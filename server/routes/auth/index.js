@@ -6,7 +6,7 @@ const User = require("./../../models/user.model")
 const bcrypt = require("bcrypt")
 
 
-router.get("/signup", (req, res) => res.send("estas en signup"))
+
 router.post('/signup', (req, res, next) => {
     console.log('estas en sigup')
 

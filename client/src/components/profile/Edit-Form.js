@@ -9,8 +9,6 @@ class EditForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-
-
             username: '',
             role: '',
             editing: true
@@ -25,8 +23,6 @@ class EditForm extends Component {
         this.state.editing && this.updateUser(user_id)
 
     }
-
-
 
     updateUser = user_id => {
 
