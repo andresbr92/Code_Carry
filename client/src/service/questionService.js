@@ -11,8 +11,6 @@ export default class QuestionService {
     }
 
     allUsers = () => this.service.get('/')
-    // login = credentials => this.service.post('/login', credentials)
-    // signup = credentials => this.service.post('/signup', credentials)
-    // logout = () => this.service.post('/logout')
-    // isLoggedIn = () => this.service.get('/loggedin')
+    getOneQuestion = question_id => this.service.get(`/question/details/${question_id}`)
+    
 }

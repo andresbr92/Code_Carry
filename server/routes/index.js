@@ -4,6 +4,6 @@ module.exports = app => {
     app.use('/', require('./base'))
     app.use('/auth', require('./auth'))
     app.use('/profile', require('./profile'))
-    app.use('/questions', require('./questions'))
+    app.use('/question', require('./questions'))
 
 }

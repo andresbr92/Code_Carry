@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+
 
 
 class Profile extends Component {
@@ -31,6 +35,8 @@ class Profile extends Component {
             .catch(err => console.log(err))
     }
 
+
+
     render() {
         return (
             !this.state.user ? <h3>CARGANDO</h3> :
@@ -44,16 +50,25 @@ class Profile extends Component {
                             <Col md={{ span: 5, offset: 1 }}>
 
                                 <img src={this.state.user[0].image_url}></img>
+                                <hr></hr>
+                                <h3>Email: {this.state.user[0].email}</h3>
+                                <h4>Hablidades en: {this.state.user[0].skill.map((elm, idx) => <p>{elm}</p>)}</h4>
                                 <Link className="btn btn-dark btn-md" to={`/profile/edit/${this.state.user._id}`} >Editar perfil</Link>
                             </Col>
                             <Col md={{ span: 4, offset: 1 }}>
-                                <h3>Email: {this.state.user[0].email}</h3>
-                                <h4>Hablidades en: {this.state.user[0].skill.map((elm, idx) => <p>{elm}</p>)}</h4>
-                                
-                                <h4>las preguntas de este usuario: {this.state.user[1].map((elm) => <p>titulo :{elm.title}</p>)}</h4>
-                                
-                                
-
+                                <Accordion defaultActiveKey="0">
+                                    <Card>
+                                        <Card.Header>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                                Las preguntas del usuario
+                                            </Accordion.Toggle>
+                                        </Card.Header>
+                                        <Accordion.Collapse eventKey="0">
+                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link to={`/question/details/${elm._id}`}><p>titulo :{elm.title}</p></Link>)}</h4> </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                </Accordion>
+                                {/* TODO todo hacer lista de preguntas y componente nuevo para los detalles de la pregunta */}
                             </Col>
                         </Row>
                     </Container>

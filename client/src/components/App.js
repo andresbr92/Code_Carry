@@ -11,6 +11,7 @@ import EditForm from './profile/Edit-Form'
 import Navigation from './../components/ui/navBar'
 import LoginForm from './../components/auth/loginForm'
 import SignupForm from './../components/auth/signUpForm'
+import QuestionDetails from './question/questionDetails';
 
 
 class App extends Component {
@@ -46,6 +47,7 @@ class App extends Component {
             this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
           <Route exact path='/question/new/:user_id' render={props =>
             this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
+          <Route exact path='/question/details/:question_id' render={props => <QuestionDetails {...props} />} />
         </Switch>
       </>
     )
