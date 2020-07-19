@@ -20,7 +20,7 @@ const userSchema = new Schema({
         type: String,
         //required: true
     },
-    skill: {
+    skills: {
         type: [String],
         enum: ['javascript', 'react', 'java', 'python', 'mongodb']
     },

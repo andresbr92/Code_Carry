@@ -58,9 +58,10 @@ class Navigation extends Component {
                                     </>
                                 )
                             }
+                            {/* ///TODO es necesario el ID en rutas publicas? */}
 
-                            <Nav.Link as="span">
-                                <NavLink to="/profile" activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
+                            <Nav.Link as="span"> 
+                                <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
                             </Nav.Link>
                         </Nav>
 

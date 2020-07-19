@@ -41,11 +41,11 @@ class App extends Component {
         <Switch>
           <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} />} />
           <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
-
-
           <Route exact path='/profile/edit/:user_id' render={props => <EditForm {...props} />} />
-          <Route exact path='/profile/:user_id' render={props => <Profile {...props} />} />
-          <Route exact path='/question/new/:user_id' render={props => <NewQuestion {...props} loggedInUser={this.state.loggedInUser} />} />
+          <Route exact path="/profile/:user_id" render={props =>
+            this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
+          <Route exact path='/question/new/:user_id' render={props =>
+            this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
         </Switch>
       </>
     )

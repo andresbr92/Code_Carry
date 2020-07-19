@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import ProfileService from './../../../service/profileService'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import FormCheck from 'react-bootstrap/FormCheck'
 
 class NewQuestion extends Component {
     constructor(props) {
         super(props)
         this.state = {
             title: '',
-            skills: '',
+            skills: [],
             description: '',
             image_url: '',
             userOwner: ''
@@ -19,15 +20,20 @@ class NewQuestion extends Component {
     }
 
     handleInputChange = e => {
+        //TODO hay que preguntar lo de los checkboxes del demonio
+
         const { name, value } = e.target
+
+        console.log (e.target.checked)
         this.setState({
             [name]: value,
-            userOwner: this.props.loggedInUser._id
+            userOwner: this.props.loggedInUser._id,
+            
         })
     }
 
     handleFormSubmit = e => {
-        
+
         e.preventDefault()
         this.ProfileService
             .makeQuestion(this.state)
@@ -36,7 +42,6 @@ class NewQuestion extends Component {
     }
 
     render() {
-        console.log(this.props.loggedInUser)
 
         return (
             <>
@@ -51,11 +56,15 @@ class NewQuestion extends Component {
                     <Form.Group>
                         <Form.Label>Lenguajes</Form.Label>
                         {/* Hacer un select y options */}
-                        <Form.Control onChange={this.handleInputChange} value={this.state.skills} name="skills" type="text" />
+                        <Form.Check onChange={this.handleInputChange} value={this.state.skills} name="skills" type="checkbox" label="javascript" />
+
+                        {/* <Form.Control onChange={this.handleInputChange} value={this.state.skills} name="skills" type="text" /> */}
                     </Form.Group>
 
                     <Form.Group>
                         <Form.Label>Descripción</Form.Label>
+
+
                         <Form.Control onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
                     </Form.Group>
 
