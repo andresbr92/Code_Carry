@@ -32,7 +32,6 @@ class QuestionDetails extends Component {
 
 
     render() {
-
         return (
 
             !this.state.questionDetails ? <h3>CARGANDO</h3> :
@@ -45,7 +44,7 @@ class QuestionDetails extends Component {
                         <Col md={{ span: 5, offset: 1 }}>
                             <p><b>Detalles: </b> {this.state.questionDetails.description}</p>
                             <hr></hr>
-                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm) => <p>{elm}</p>)}</h5>
+                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm) => <p key={elm._id} >{elm}</p> ) } </h5>
                             <hr></hr>
                             <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
                         </Col>

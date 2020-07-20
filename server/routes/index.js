@@ -5,5 +5,8 @@ module.exports = app => {
     app.use('/auth', require('./auth'))
     app.use('/profile', require('./profile'))
     app.use('/question', require('./questions'))
+    app.use('/chat', require('./chat'))
+
+    
 
 }

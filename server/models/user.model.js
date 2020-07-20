@@ -20,7 +20,7 @@ const userSchema = new Schema({
         type: String,
         //required: true
     },
-    skills: {
+    skill: {
         type: [String],
         enum: ['javascript', 'react', 'java', 'python', 'mongodb']
     },
@@ -41,7 +41,7 @@ const userSchema = new Schema({
 
 
 
-})
+}, {timestamps:true})
 
 const User = mongoose.model("User", userSchema)
 module.exports = User
