@@ -66,7 +66,7 @@ class EditForm extends Component {
                 skill: this.state.skill,
 
             })
-            .then(res => console.log(res))
+            .then(res => this.props.history.push(`/profile/${this.props.match.params.user_id}`))
             .catch(err => console.log(err))
     }
     checkLanguage = (language) => {

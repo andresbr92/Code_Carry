@@ -43,6 +43,9 @@ class Navigation extends Component {
                                             <NavLink to={`/question/new/${this.props.loggedInUser._id}`} activeStyle={{ color: 'white' }}>Make a Question!</NavLink>
                                         </Nav.Link>
                                         <Nav.Link as="span">
+                                            <NavLink to={`/chat`} activeStyle={{ color: 'white' }}>chat</NavLink>
+                                        </Nav.Link>
+                                        <Nav.Link as="span">
                                             <span onClick={this.logout}>Cerrar sesión</span>
                                         </Nav.Link>
                                     </>

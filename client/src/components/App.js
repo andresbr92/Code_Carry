@@ -12,8 +12,10 @@ import EditForm from './profile/Edit-Form'
 import Navigation from './../components/ui/navBar'
 import LoginForm from './../components/auth/loginForm'
 import SignupForm from './../components/auth/signUpForm'
-import QuestionDetails from './question/questionDetails';
-import ChatPrueba from './ui/chatPrueba/chatPrueba';
+import QuestionDetails from './question/questionDetails'
+import ChatPrueba from './ui/chatPrueba/chatPrueba'
+import Home from './ui/home'
+
 
 
 class App extends Component {
@@ -61,8 +63,10 @@ class App extends Component {
           
           <Route exact path='/question/details/:question_id' render={props => <QuestionDetails {...props} />} />
 
+          <Route exact path='/home' render={props => <Home {...props} />} />
+
           {/* EN DESARROLLO */}
-          <Route exact path='/chat' render={props => <ChatPrueba {...props} />} />
+          <Route exact path='/chat' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
         </Switch>
       </>
     )

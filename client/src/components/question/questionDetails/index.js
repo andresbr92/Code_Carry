@@ -38,13 +38,13 @@ class QuestionDetails extends Component {
 
                 <Container as="main">
 
-                    <h1 className>{this.state.questionDetails.title}</h1>
+                    <h1>{this.state.questionDetails.title}</h1>
 
                     <Row>
                         <Col md={{ span: 5, offset: 1 }}>
                             <p><b>Detalles: </b> {this.state.questionDetails.description}</p>
                             <hr></hr>
-                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm) => <p key={elm._id} >{elm}</p> ) } </h5>
+                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm,idx) => <p key={idx} >{elm}</p> ) } </h5>
                             <hr></hr>
                             <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
                         </Col>
