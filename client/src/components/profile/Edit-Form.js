@@ -110,7 +110,7 @@ class EditForm extends Component {
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('mongodb')} value='mongodb' inline label="mongodb" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('python')} value='python' inline label="python" name="skill" type='checkbox' />
                         </Form.Group>
-                        <Button variant="dark" type="submit">Submit</Button>
+                        <Button onClick={this.props.history.goBack} variant="dark" type="submit">Submit</Button>
                     </Form>
 
 

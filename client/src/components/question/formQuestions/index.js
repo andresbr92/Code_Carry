@@ -20,10 +20,7 @@ class NewQuestion extends Component {
     }
 
     handleInputChange = e => {
-        //TODO hay que preguntar lo de los checkboxes del demonio
-
         const { name, value } = e.target
-
         console.log (e.target.checked)
         this.setState({
             [name]: value,

@@ -35,8 +35,8 @@ const userSchema = new Schema({
         ref: 'question'
     }],
     notifications: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Questions'
+        type: String,
+        enum: ['javascript', 'react', 'java', 'python', 'mongodb']
     }],
 
 

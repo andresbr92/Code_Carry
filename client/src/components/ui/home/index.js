@@ -30,7 +30,6 @@ updateQuestionsList = () => {
 }
 
 render(){
-    console.log(this.state.questions)
     return (
         <>
         <h1>Bienvenido a CODE_CARRY</h1>

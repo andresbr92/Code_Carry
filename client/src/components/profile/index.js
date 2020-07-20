@@ -31,14 +31,21 @@ class Profile extends Component {
             })
             .catch(err => console.log(err))
     }
+    notifications = () => { 
+        const notArray = [] //TODO hay que refactorizar el includes
+        this.state.user[2].map((elm) => elm.skill.includes('react') ? notArray.push(elm) : null)
+        return console.log(notArray) 
+    }
+    
 
     render() {
+        
         return (
             !this.state.user ? <h3>CARGANDO</h3> :
 
                 <>
                     <Container as="main">
-
+                        {this.notifications()}
                         <h1>bienvenido a tu perfil {this.state.user[0].username}</h1>
 
                         <Row>
@@ -62,6 +69,18 @@ class Profile extends Component {
                                         <Accordion.Collapse eventKey="0">
                                             <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}><p>titulo :{elm.title} </p></Link>)}</h4> </Card.Body>
                                         </Accordion.Collapse>
+                                    </Card>
+                                </Accordion>
+                                <Accordion defaultActiveKey="0">
+                                    <Card>
+                                        <Card.Header>
+                                            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                                <Accordion.Collapse eventKey="0">
+                                                    <Card.Body>   </Card.Body>
+                                                </Accordion.Collapse>
+                                            </Accordion.Toggle>
+                                        </Card.Header>
+                                        
                                     </Card>
                                 </Accordion>
                             </Col>
