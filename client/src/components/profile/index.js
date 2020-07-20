@@ -8,8 +8,6 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-
-
 class Profile extends Component {
     constructor() {
         super()
@@ -35,8 +33,6 @@ class Profile extends Component {
             .catch(err => console.log(err))
     }
 
-
-
     render() {
         return (
             !this.state.user ? <h3>CARGANDO</h3> :
@@ -52,8 +48,8 @@ class Profile extends Component {
                                 <img src={this.state.user[0].image_url}></img>
                                 <hr></hr>
                                 <h3>Email: {this.state.user[0].email}</h3>
-                                <h4>Hablidades en: {this.state.user[0].skill.map((elm, idx) => <p>{elm}</p>)}</h4>
-                                <Link className="btn btn-dark btn-md" to={`/profile/edit/${this.state.user._id}`} >Editar perfil</Link>
+                                <h4>Hablidades en: {this.state.user[0].skills.map((elm, idx) => <p>{elm}</p>)}</h4>
+                                <Link className="btn btn-dark btn-md" to={`/profile/edit/${this.state.user.user_id}`} >Editar perfil</Link>
                             </Col>
                             <Col md={{ span: 4, offset: 1 }}>
                                 <Accordion defaultActiveKey="0">

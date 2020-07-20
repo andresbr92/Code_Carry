@@ -12,6 +12,7 @@ import Navigation from './../components/ui/navBar'
 import LoginForm from './../components/auth/loginForm'
 import SignupForm from './../components/auth/signUpForm'
 import QuestionDetails from './question/questionDetails';
+import Home from './ui/home'
 
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
           <Route exact path='/question/new/:user_id' render={props =>
             this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
           <Route exact path='/question/details/:question_id' render={props => <QuestionDetails {...props} />} />
+          <Route exact path='/home' render={props => <Home {...props} /> } />
         </Switch>
       </>
     )

@@ -57,9 +57,6 @@ class EditForm extends Component {
             .catch(err => console.log(err))
     }
 
-
-
-
     render() {
         return (
             this.state.editing ? <h3>CARGANDO</h3> :
@@ -70,7 +67,6 @@ class EditForm extends Component {
 
                             <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
                             <Form.Control onChange={this.handleInputChange} value={this.state.role} name="role" type="text" />
-
 
                             <Button variant="dark" type="submit">Submit</Button>
 
