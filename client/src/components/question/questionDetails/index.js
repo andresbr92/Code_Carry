@@ -38,7 +38,7 @@ class QuestionDetails extends Component {
 
                 <Container as="main">
 
-                    <h1 className>{this.state.questionDetails.title}</h1>
+                    <h1>{this.state.questionDetails.title}</h1>
 
                     <Row>
                         <Col md={{ span: 5, offset: 1 }}>
