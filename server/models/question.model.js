@@ -23,7 +23,7 @@ const questionSchema = new Schema({
         ref: 'Users'
     }
 
-})
+}, {timestamps:true})
 
 
 

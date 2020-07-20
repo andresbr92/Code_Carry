@@ -31,7 +31,6 @@ class QuestionDetails extends Component {
 
 
     render() {
-        console.log (this.state.questionDetails)
         return (
 
             !this.state.questionDetails ? <h3>CARGANDO</h3> :
@@ -44,7 +43,7 @@ class QuestionDetails extends Component {
                         <Col md={{ span: 5, offset: 1 }}>
                             <p><b>Detalles: </b> {this.state.questionDetails.description}</p>
                             <hr></hr>
-                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm) => <p>{elm}</p>)}</h5>
+                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm) => <p key={elm._id} >{elm}</p> ) } </h5>
                             <hr></hr>
                             <Link className="btn btn-dark btn-md" to={`/profile/${this.state.questionDetails.userOwner}`}>Volver</Link>
                         </Col>

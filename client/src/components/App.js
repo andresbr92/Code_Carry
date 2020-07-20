@@ -5,6 +5,7 @@ import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import AuthService from './../service/authService'
 
+//COMPONENTES
 import NewQuestion from './../components/question/formQuestions/index'
 import Profile from './profile'
 import EditForm from './profile/Edit-Form'
@@ -12,6 +13,7 @@ import Navigation from './../components/ui/navBar'
 import LoginForm from './../components/auth/loginForm'
 import SignupForm from './../components/auth/signUpForm'
 import QuestionDetails from './question/questionDetails';
+import ChatPrueba from './ui/chatPrueba/chatPrueba';
 
 
 class App extends Component {
@@ -39,15 +41,28 @@ class App extends Component {
     return (
       <>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+
         <Switch>
+
+          {/* AUTH */}
           <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} />} />
           <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
-          <Route exact path='/profile/edit/:user_id' render={props => <EditForm {...props} />} />
+
+
+          {/* PROFILE */}
+          <Route exact path='/profile/edit/:user_id' render={props =>
+            this.state.loggedInUser ? <EditForm loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to='/auth/login' />} />
+
           <Route exact path="/profile/:user_id" render={props =>
             this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
+          
           <Route exact path='/question/new/:user_id' render={props =>
             this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
+          
           <Route exact path='/question/details/:question_id' render={props => <QuestionDetails {...props} />} />
+
+          {/* EN DESARROLLO */}
+          <Route exact path='/chat' render={props => <ChatPrueba {...props} />} />
         </Switch>
       </>
     )

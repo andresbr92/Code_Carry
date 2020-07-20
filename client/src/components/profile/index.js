@@ -30,7 +30,6 @@ class Profile extends Component {
             .getTheUser(user_id)
             .then(response => {
                 this.setState({ user: response.data })
-                //console.log (this.state.user[1].map((elm)=> ))
             })
             .catch(err => console.log(err))
     }
@@ -52,8 +51,9 @@ class Profile extends Component {
                                 <img src={this.state.user[0].image_url}></img>
                                 <hr></hr>
                                 <h3>Email: {this.state.user[0].email}</h3>
-                                <h4>Hablidades en: {this.state.user[0].skill.map((elm, idx) => <p>{elm}</p>)}</h4>
-                                <Link className="btn btn-dark btn-md" to={`/profile/edit/${this.state.user._id}`} >Editar perfil</Link>
+                                {/* TODO hay quue preguntar a enrique y arreglar el problema de las skills */}
+                                <h4>Hablidades en: {this.state.user[0].skill.map((elm, idx) => <p key={idx} >{elm}</p>)}</h4>
+                                <Link className="btn btn-dark btn-md" to={`/profile/edit/${this.state.user[0]._id}`} >Editar perfil</Link>
                             </Col>
                             <Col md={{ span: 4, offset: 1 }}>
                                 <Accordion defaultActiveKey="0">
@@ -64,11 +64,10 @@ class Profile extends Component {
                                             </Accordion.Toggle>
                                         </Card.Header>
                                         <Accordion.Collapse eventKey="0">
-                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link to={`/question/details/${elm._id}`}><p>titulo :{elm.title}</p></Link>)}</h4> </Card.Body>
+                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}><p>titulo :{elm.title} </p></Link>)}</h4> </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>
                                 </Accordion>
-                                {/* TODO todo hacer lista de preguntas y componente nuevo para los detalles de la pregunta */}
                             </Col>
                         </Row>
                     </Container>

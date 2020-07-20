@@ -22,7 +22,6 @@ class Navigation extends Component {
             .catch(err => console.log(err))
     }
     render() {
-        console.log(this.props, 'Estoy akiiiiiiiiiii')
         return (
             <>
                 <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
@@ -60,7 +59,7 @@ class Navigation extends Component {
                             }
                             {/* ///TODO es necesario el ID en rutas publicas? */}
 
-                            <Nav.Link as="span"> 
+                            <Nav.Link as="span">
                                 <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
                             </Nav.Link>
                         </Nav>
