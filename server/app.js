@@ -8,28 +8,29 @@ require('./configs/debugger.config')
 
 // App
 const express = require('express')
-const socketio = require('socket.io')
 const app = express()
-const http = require('http')
-const server = http.createServer(app)
-const io = socketio(server)
 
-//CONFIGURACION DE IO
-io.on('connection', (socket) => {
-    console.log('new connection')
-    
-    socket.on('disconnetc', () => {
-        console.log('user has left')
-    })
-})
+//CONFIGURACION DE SOCKET 00000000000000000000000000000000000000000000000000
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+//============================================================================
 
 // Configs
+require('./configs/socket.config')
 require('./configs/preformatter.config')(app)
 require('./configs/middleware.config')(app)
 require('./configs/passport.config')(app)

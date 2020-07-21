@@ -34,10 +34,9 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'question'
     }],
-    notifications: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Questions'
-    }],
+    notifications: {
+        viewed : Number
+    }
 
 
 

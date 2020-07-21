@@ -44,7 +44,7 @@ class QuestionDetails extends Component {
                         <Col md={{ span: 5, offset: 1 }}>
                             <p><b>Detalles: </b> {this.state.questionDetails.description}</p>
                             <hr></hr>
-                            <h5>Estas son tus habilidades: {this.state.questionDetails.skill.map((elm) => <p key={elm._id} >{elm}</p> ) } </h5>
+                            <h5>Lenguaje de programacion: {this.state.questionDetails.skill} </h5>
                             <hr></hr>
                             <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
                         </Col>

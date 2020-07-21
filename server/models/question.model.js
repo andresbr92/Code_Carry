@@ -7,7 +7,7 @@ const questionSchema = new Schema({
         required: true
     },
     skill: {
-        type: [String],
+        type: String,
         enum: ['javascript', 'react', 'java', 'python', 'mongodb'],
         required: true
     },
@@ -21,7 +21,12 @@ const questionSchema = new Schema({
     userOwner: {
         type: Schema.Types.ObjectId,
         ref: 'Users'
-    }
+    },
+    userViewed: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Users'
+    }]
+    //TODO añadir aqui el ide del usuario que lo haya visto o que se haya renderizado o con un boton 
 
 }, {timestamps:true})
 

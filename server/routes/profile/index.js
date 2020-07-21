@@ -6,14 +6,14 @@ const Question = require('../../models/question.model')
 
 // Endpoints
 
-
 router.get('/:user_id', (req, res, next) => {
 
     const promise1 = User.findById(req.params.user_id)
-    const promise2 = Question.find({"userOwner": req.params.user_id})
+    const promise2 = Question.find({ "userOwner": req.params.user_id })
+    const promise3 = Question.find()
 
     Promise
-        .all([promise1,promise2])
+        .all([promise1,promise2,promise3])
         .then(allInfo => res.json(allInfo))
         .catch(err => next(err))
 
@@ -30,6 +30,7 @@ router.post('/edit/:user_id', (req, res, next) => {
     User
         .findByIdAndUpdate(req.params.user_id, req.body)
         .then(res => console.log(res))
+        .catch(err => next(err))
 
 
 })

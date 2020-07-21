@@ -65,7 +65,7 @@ class App extends Component {
           
           <Route exact path='/home' render={props => <Home {...props} /> } />
           {/* EN DESARROLLO */}
-          <Route exact path='/chat' render={props => <ChatPrueba {...props} />} />
+          <Route exact path='/chat' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
         </Switch>
         <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
       </>
