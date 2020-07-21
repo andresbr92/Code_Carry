@@ -9,11 +9,13 @@ router.get('/details/:question_id', (req, res, next) => {
         .catch(err => next(err))
 
 })
+
 router.get('/home',(req,res,next) => {
     Questions
     .find()
     .then(response => res.json(response))
    .catch(err => next(err))
 })
+
 
 module.exports = router

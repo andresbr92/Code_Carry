@@ -15,6 +15,7 @@ import SignupForm from './../components/auth/signUpForm'
 import QuestionDetails from './question/questionDetails';
 import ChatPrueba from './ui/chatPrueba/chatPrueba';
 import Home from './ui/home'
+import FooterPagePro from './ui/footer'
 
 
 class App extends Component {
@@ -66,6 +67,7 @@ class App extends Component {
           {/* EN DESARROLLO */}
           <Route exact path='/chat' render={props => <ChatPrueba {...props} />} />
         </Switch>
+        <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
       </>
     )
   }
