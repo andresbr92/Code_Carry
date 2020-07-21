@@ -6,7 +6,6 @@ const Question = require('../../models/question.model')
 
 // Endpoints
 
-
 router.get('/:user_id', (req, res, next) => {
 
     const promise1 = User.findById(req.params.user_id)

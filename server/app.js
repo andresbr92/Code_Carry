@@ -10,6 +10,25 @@ require('./configs/debugger.config')
 const express = require('express')
 const app = express()
 
+//CONFIGURACION DE SOCKET 00000000000000000000000000000000000000000000000000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//============================================================================
+
 // Configs
 require('./configs/socket.config')
 require('./configs/preformatter.config')(app)
