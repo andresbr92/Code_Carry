@@ -10,7 +10,7 @@ class NewQuestion extends Component {
         super(props)
         this.state = {
             title: '',
-            skill: [],
+            skill: '',
             description: '',
             image_url: '',
             userOwner: ''
@@ -23,7 +23,7 @@ class NewQuestion extends Component {
 
     handleInputChange = e => {
         const { name, value } = e.target
-        console.log (e.target.checked)
+        console.log(e.target.checked)
         this.setState({
             [name]: value,
             userOwner: this.props.loggedInUser._id,
@@ -41,16 +41,18 @@ class NewQuestion extends Component {
     }
 
     checkLanguage = (language) => {
-        return this.state.skill.includes(language)
+        if (this.state.skill == language) {
+            return true
+        } else { return false }
     }
 
     handleChecks = (e) => {
-        let languagesCopy = [...this.state.skill]
+        let languagesCopy = ''
         if (e.target.checked) {
-            languagesCopy.push(e.target.value)
+            languagesCopy = e.target.value
             this.setState({ skill: languagesCopy })
         } else {
-            let updatedLanguages = languagesCopy.filter((skill) => skill !== e.target.value)
+            let updatedLanguages = !e.target.value
             this.setState({ skill: updatedLanguages })
         }
     }
@@ -68,27 +70,24 @@ class NewQuestion extends Component {
                         <Form.Control onChange={this.handleInputChange} value={this.state.title} name="title" type="text" />
                     </Form.Group>
                     <Form.Group>
-                    <Form.Label>Pregunta sobre  </Form.Label>
-                            <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('javascript')} value='javascript' inline label="javascript" name="skill" type='checkbox' />
-                            <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('java')} value='java' inline label="java" name="skill" type='checkbox' />
-                            <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('react')} value='react' inline label="react" name="skill" type='checkbox' />
-                            <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('mongodb')} value='mongodb' inline label="mongodb" name="skill" type='checkbox' />
-                            <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('python')} value='python' inline label="python" name="skill" type='checkbox' />
-                        </Form.Group>
-
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                         <Form.Label>Descripción</Form.Label>
-                         <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.description} name="description" type="text"/>
-                        </Form.Group>
-
+                        <Form.Label>Pregunta sobre  </Form.Label>
+                        <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('javascript')} value='javascript' inline label="javascript" name="skill" type='checkbox' />
+                        <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('java')} value='java' inline label="java" name="skill" type='checkbox' />
+                        <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('react')} value='react' inline label="react" name="skill" type='checkbox' />
+                        <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('mongodb')} value='mongodb' inline label="mongodb" name="skill" type='checkbox' />
+                        <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('python')} value='python' inline label="python" name="skill" type='checkbox' />
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Label>Imagen (URL)</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.image_url} name="image_url" type="text" />
                     </Form.Group>
-
                     <Button onClick={this.props.history.goBack} variant="dark" type="submit">Hacer pregunta</Button>
                 </Form>
-                </Container>
+            </Container>
 
         )
     }
