@@ -56,7 +56,7 @@ class QuestionDetails extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            {this.state.questionDetails.code && <pre> <code>  <p><h3>the code</h3> <Highlight>{this.state.questionDetails.code}</Highlight> </p></code></pre>}
+                            {this.state.questionDetails.code && <pre> <code>  <p><Highlight>{this.state.questionDetails.code}</Highlight> </p></code></pre>}
                         </Col>
                     </Row>
 
