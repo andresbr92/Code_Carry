@@ -41,7 +41,7 @@ router.post('/edit/delete/:user_id', (req, res, next) => {
 })
 
 router.post('/question/new', (req, res, next) => {
-    console.log(req.body)
+   
     Question
         .create(req.body)
         .then(response => res.json(response))

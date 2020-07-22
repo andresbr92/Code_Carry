@@ -58,14 +58,12 @@ class App extends Component {
           <Route exact path="/profile/:user_id" render={props =>
             this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
           
-          <Route exact path='/question/new/:user_id' render={props =>
-            this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
-          
           <Route exact path='/question/details/:question_id' render={props => <QuestionDetails {...props} />} />
-          
-          <Route exact path='/home' render={props => <Home {...props} /> } />
+
+          <Route exact path='/home' render={props => <Home loggedInUser={this.state.loggedInUser} {...props} /> } />
           {/* EN DESARROLLO */}
           <Route exact path='/chat' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
+      
         </Switch>
         <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
       </>

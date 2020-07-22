@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
+
 import AuthService from './../../../service/authService'
 import { Link, NavLink } from 'react-router-dom'
 
@@ -39,9 +40,7 @@ class Navigation extends Component {
                             {this.props.loggedInUser ?
                                 (
                                     <>
-                                        <Nav.Link as="span">
-                                            <NavLink to={`/question/new/${this.props.loggedInUser._id}`} activeStyle={{ color: 'white' }}>Make a Question!</NavLink>
-                                        </Nav.Link>
+                                      
                                         <Nav.Link as="span">
                                             <NavLink to={`/chat`} activeStyle={{ color: 'white' }}>chat</NavLink>
                                         </Nav.Link>

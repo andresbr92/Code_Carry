@@ -17,7 +17,6 @@ class Profile extends Component {
             user: undefined,
             notViewedNotification : undefined
             
-
         }
         this.ProfileService = new ProfileService()
 
