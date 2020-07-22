@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
+import Highlight from 'react-highlight.js'
 
 class QuestionDetails extends Component {
 
@@ -33,8 +34,10 @@ class QuestionDetails extends Component {
 
     render() {
         return (
+            
 
             !this.state.questionDetails ? <h3>CARGANDO</h3> :
+                
 
                 <Container as="main">
 
@@ -42,17 +45,25 @@ class QuestionDetails extends Component {
 
                     <Row>
                         <Col md={{ span: 5, offset: 1 }}>
-                            <p><b>Detalles: </b> {this.state.questionDetails.description}</p>
+                            <p><b>Detalles: </b> {this.state.questionDetails.description} </p>
                             <hr></hr>
-                            <h5>Lenguaje de programacion: {this.state.questionDetails.skill} </h5>
+                            <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
                             <hr></hr>
-                            <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
                         </Col>
                         <Col md={{ span: 4, offset: 1 }}>
                             <img src={this.state.questionDetails.image_url} alt={this.state.questionDetails.title} />
                         </Col>
                     </Row>
+                    <Row>
+                        <Col>
+                            {this.state.questionDetails.code && <pre> <code>  <p><h3>the code</h3> <Highlight>{this.state.questionDetails.code}</Highlight> </p></code></pre>}
+                        </Col>
+                    </Row>
 
+                            <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
+                            {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
+                            {this.props.loggedInUser && <Link className="btn btn-dark btn-md ml-5" to='/' >Resolver pregunta</Link>}
+                            
                 </Container>
 
         )

@@ -11,6 +11,7 @@ class NewQuestion extends Component {
         this.state = {
             title: '',
             skill: '',
+            code:'',
             description: '',
             image_url: '',
             userOwner: ''
@@ -40,23 +41,14 @@ class NewQuestion extends Component {
             .catch(err => console.log(err))
     }
 
-    checkLanguage = (language) => {
-        if (this.state.skill == language) {
-            return true
-        } else { return false }
-    }
+    checkLanguage = language => this.state.skill == language || false
+        // if (this.state.skill == language) {
+        //     return true
+        // } else { return false }
+    
 
-    handleChecks = (e) => {
-        let languagesCopy = ''
-        if (e.target.checked) {
-            languagesCopy = e.target.value
-            this.setState({ skill: languagesCopy })
-        } else {
-            let updatedLanguages = !e.target.value
-            this.setState({ skill: updatedLanguages })
-        }
-    }
-
+    handleChecks = (e) => e.target.checked ? this.setState({ skill: e.target.value }) : this.setState({ skill: !e.target.value })
+    
     render() {
 
         return (
@@ -81,6 +73,10 @@ class NewQuestion extends Component {
                         <Form.Label>Descripción</Form.Label>
                         <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
                     </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>El codigo</Form.Label>
+                        <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.code} name="code" type="text" />
+                    </Form.Group>
                     <Form.Group>
                         <Form.Label>Imagen (URL)</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.image_url} name="image_url" type="text" />
@@ -88,7 +84,6 @@ class NewQuestion extends Component {
                     <Button onClick={this.props.history.goBack} variant="dark" type="submit">Hacer pregunta</Button>
                 </Form>
             </Container>
-
         )
     }
 }

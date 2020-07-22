@@ -19,18 +19,23 @@ import FooterPagePro from './ui/footer'
 
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       loggedInUser: null,
       toast: {
         visible: false,
-        text: ''
-      }
+        text: '',
+
+      },
+      filteredSearch: ''
     }
     this.AuthService = new AuthService()
 
   }
+
+  handleSearch = inputSearch => this.setState({ filteredSearch: inputSearch })
+   // const filtered = this.state.filteredSearch.filter((elm) => elm.name.toLowerCase().includes(inputSearch))
   setTheUser = user => this.setState({ loggedInUser: user }, () => console.log("El estado de App ha cambiado:", this.state))
 
   fetchUser = () => {
@@ -42,7 +47,8 @@ class App extends Component {
   render() {
     return (
       <>
-        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+
+        <Navigation handleSearch={this.handleSearch} setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
 
         <Switch>
 
@@ -57,17 +63,17 @@ class App extends Component {
 
           <Route exact path="/profile/:user_id" render={props =>
             this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
-          
+
           <Route exact path='/question/new/:user_id' render={props =>
             this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
-          
-          <Route exact path='/question/details/:question_id' render={props => <QuestionDetails {...props} />} />
-          
-          <Route exact path='/home' render={props => <Home {...props} /> } />
+
+          <Route exact path='/question/details/:question_id' render={props => <QuestionDetails loggedInUser={this.state.loggedInUser} {...props} />} />
+
+          <Route exact path='/' render={props => <Home handleSearch={this.state.filteredSearch} {...props} />} />
           {/* EN DESARROLLO */}
           <Route exact path='/chat' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
         </Switch>
-        <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
+        <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
       </>
     )
   }

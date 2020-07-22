@@ -10,7 +10,7 @@ router.get('/details/:question_id', (req, res, next) => {
 
 })
 
-router.get('/home',(req,res,next) => {
+router.get('/',(req,res,next) => {
     Questions
     .find()
     .then(response => res.json(response))

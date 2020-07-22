@@ -15,6 +15,9 @@ const questionSchema = new Schema({
        type: String,
        // required: true
     },
+    code: {
+        type: String
+    },
     image_url: {
         type: String,
     },

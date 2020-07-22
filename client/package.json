@@ -17,6 +17,7 @@
     "react-checkbox": "^0.1.3",
     "react-dom": "^16.13.1",
     "react-form-checkbox": "^0.2.0",
+    "react-highlight.js": "^1.0.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "react-scroll-to-bottom": "^3.0.0",

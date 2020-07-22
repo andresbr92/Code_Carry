@@ -8,44 +8,47 @@ import Col from 'react-bootstrap/Col'
 
 
 
-class Home extends Component{
-constructor(props){
-    super(props)
+class Home extends Component {
+    constructor(props) {
+        super(props)
 
-    this.state={
+        this.state = {
 
-        questions:undefined
+            questions: undefined,
+            
+        }
+        this.QuestionService = new QuestionService()
+    }
+
+
+    componentDidMount = () => this.updateQuestionsList()
+
+    updateQuestionsList = () => {
+        this.QuestionService
+            .allQuestions()
+            .then(response => { this.setState({ questions: response.data }) })
+            .catch(err => console.log(err))
 
     }
-    this.QuestionService = new QuestionService()
-}
 
-componentDidMount = () => this.updateQuestionsList()
+    render() {
+        return (
+            <>
+                <h1>Bienvenido a CODE_CARRY</h1>
+                <hr></hr>
+                <Container as="main" className="home-page">
 
-updateQuestionsList = () => {
-    this.QuestionService
-        .allQuestions()
-        .then(response => {this.setState({ questions: response.data })})
-        .catch(err => console.log(err))
-}
+                    {!this.state.questions ? <h2>Cargando...</h2> :
 
-render(){
-    return (
-        <>
-        <h1>Bienvenido a CODE_CARRY</h1>
-        <hr></hr>
-        <Container as="main" className="home-page">
-
-         {!this.state.questions ? <h2>Cargando...</h2> :
-
-        <Row>
-            {this.state.questions.map(elm => <CuestionCard key={elm._id} {...elm} />)}
-        </Row>
-}
-        </Container>
-       </>
-    )
-}
+                        <Row>
+                            {this.state.questions.filter((elm) => elm.title.toLowerCase().includes(this.props.handleSearch)).map((elm, idx) => <CuestionCard {...elm} key={idx}  handleChange={() => this.handleInputChange(idx)} />)}
+                            
+                        </Row>
+                    }
+                </Container>
+            </>
+        )
+    }
 
 }
 
