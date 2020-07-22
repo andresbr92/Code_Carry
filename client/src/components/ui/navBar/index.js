@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
+import AutoComplete from 'react-autocomplete'
 
 
 
@@ -61,11 +62,7 @@ class Navigation extends Component {
 
                             {this.props.loggedInUser ?
                                 (
-                                    <>
-                                      
-                                        <Nav.Link as="span">
-                                            <NavLink to={`/chat`} activeStyle={{ color: 'white' }}>chat</NavLink>
-                                        </Nav.Link>
+                                    <>                
                                         <Nav.Link as="span">
                                             <span onClick={this.logout}>Cerrar sesión</span>
                                         </Nav.Link>
@@ -81,8 +78,6 @@ class Navigation extends Component {
                                     </>
                                 )
                             }
-                            
-
                             <Nav.Link as="span">
                                 <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
                             </Nav.Link>

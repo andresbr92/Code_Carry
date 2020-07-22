@@ -13,7 +13,8 @@ class QuestionDetails extends Component {
         super()
         this.state = {
 
-            questionDetails: undefined
+            questionDetails: undefined,
+
 
         }
 
@@ -36,18 +37,27 @@ class QuestionDetails extends Component {
         const id = this.props.match.params.question_id
 
         this.QuestionService
-        .removeQuestion(id)
-        .then(()=>   this.props.history.goBack)
-        .catch(err => console.log(err))
-      
+            .removeQuestion(id)
+            .then(() => this.props.history.goBack)
+            .catch(err => console.log(err))
+
+    }
+    resolveQuestion = () => {
+        const question_id = this.state.questionDetails._id  
+        const value = true
+        this.QuestionService
+            .resolveQuestionBack(question_id, value)
+            .then()
+            .catch(err => console.log(err))
+        this.componentDidMount()
     }
 
     render() {
         return (
-            
+
 
             !this.state.questionDetails ? <h3>CARGANDO</h3> :
-                
+
 
                 <Container as="main">
 
@@ -59,9 +69,7 @@ class QuestionDetails extends Component {
                             <hr></hr>
                             <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
                             <hr></hr>
-                            <Button onClick={this.removeQuestion} className="btn btn-dark btn-md">Eliminar pregunta</Button>
-                            <hr></hr>
-                            <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
+
                         </Col>
                         <Col md={{ span: 4, offset: 1 }}>
                             <img src={this.state.questionDetails.image_url} alt={this.state.questionDetails.title} />
@@ -73,10 +81,12 @@ class QuestionDetails extends Component {
                         </Col>
                     </Row>
 
-                            <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
-                            {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
-                            {this.props.loggedInUser && <Link className="btn btn-dark btn-md ml-5" to='/' >Resolver pregunta</Link>}
-                            
+                    <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
+                    {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
+                    {this.props.loggedInUser && <Button className="btn btn-dark btn-md ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button>}
+                    <hr></hr>
+                    {this.state.questionDetails.tryHelp && <Link  className="btn btn-danger btn-md" to={'/chat'} >IR AL CHAT</Link>}
+
                 </Container>
 
         )

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Questions = require("./../../models/question.model")
+const Question = require('./../../models/question.model')
 
 router.get('/details/:question_id', (req, res, next) => {
     Questions
@@ -23,7 +24,14 @@ router.post('/delete/:questions_id',(req,res,next) => {
       .then((response) => console.log(response))//////////////////////////////////Que poner aki
       .catch(error => next(error))
 
-    })
+})
+router.post('/tryHelp/:question_id', (req, res, next) => {
+    Questions
+        .findByIdAndUpdate(req.params.question_id, { tryHelp: true })
+        .then(response => console.log(response))
+        .catch(err =>  console.log (err))
+
+})
 
 
 

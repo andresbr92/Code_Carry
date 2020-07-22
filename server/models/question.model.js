@@ -28,7 +28,11 @@ const questionSchema = new Schema({
     userViewed: [{
         type: Schema.Types.ObjectId,
         ref: 'Users'
-    }]
+    }],
+    tryHelp: {
+        type: Boolean,
+        default: false
+    }
     //TODO añadir aqui el ide del usuario que lo haya visto o que se haya renderizado o con un boton 
 
 }, {timestamps:true})

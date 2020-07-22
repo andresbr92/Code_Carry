@@ -83,7 +83,7 @@ class Profile extends Component {
                                             </Accordion.Toggle>
                                         </Card.Header>
                                         <Accordion.Collapse eventKey="0">
-                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}><p>titulo :{elm.title} </p></Link>)}</h4> </Card.Body>
+                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}> {elm.tryHelp ? <p style={{ backgroundColor: '#d69c2a' }} >titulo :{elm.title} </p> : <p >titulo :{elm.title} </p>  } </Link>)}</h4> </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>
                                 </Accordion>
@@ -94,7 +94,7 @@ class Profile extends Component {
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
                                                 {this.state.notViewedNotification ? <h4>TIENES <span color={'red'} >{this.state.notViewedNotification.length} </span> NOTIFICACIONES NUEVAS </h4> : <h4>NO TIENES NOTIFICAIONES</h4>}
                                                 <Accordion.Collapse eventKey="0">
-                                                    <Card.Body>  {this.state.notViewedNotification && this.state.notViewedNotification.map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}> <p> {elm.title}</p>  <hr></hr> </Link>)}  </Card.Body>
+                                                    <Card.Body>  {this.state.notViewedNotification && this.state.notViewedNotification.map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}> {elm.tryHelp ? <p style={{ backgroundColor: '#d69c2a' }} >titulo :{elm.title} </p> : <p >titulo :{elm.title} </p>} <hr></hr> </Link>)}  </Card.Body>
                                                 </Accordion.Collapse>
                                             </Accordion.Toggle>
                                         </Card.Header>

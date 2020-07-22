@@ -16,6 +16,7 @@ import QuestionDetails from './question/questionDetails';
 import ChatPrueba from './ui/chatPrueba/chatPrueba';
 import Home from './ui/home'
 import FooterPagePro from './ui/footer'
+import ResolvePage from './ui/chatPrueba/myChat';
 
 
 class App extends Component {

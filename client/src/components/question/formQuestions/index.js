@@ -14,7 +14,8 @@ class NewQuestion extends Component {
             code:'',
             description: '',
             image_url: '',
-            userOwner: ''
+            userOwner: '',
+            tryHelp: false
         }
         this.ProfileService = new ProfileService()
     }
