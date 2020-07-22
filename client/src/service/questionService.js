@@ -12,6 +12,6 @@ export default class QuestionService {
 
     allUsers = () => this.service.get('/')
     getOneQuestion = question_id => this.service.get(`/question/details/${question_id}`)
-    allQuestions = () => this.service.get('/question/home')
+    allQuestions = () => this.service.get('/question')
     removeQuestion = question_id => this.service.post(`/question//delete/${question_id}`)
 }

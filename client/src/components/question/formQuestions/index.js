@@ -12,6 +12,7 @@ class NewQuestion extends Component {
         this.state = {
             title: '',
             skill: '',
+            code:'',
             description: '',
             image_url: '',
             userOwner: ''
@@ -20,7 +21,7 @@ class NewQuestion extends Component {
     }
     handleInputChange = e => {
         const { name, value } = e.target
-        console.log(this.props.loggedInUser._id)
+        
         this.setState({
             [name]: value,
             userOwner: this.props.loggedInUser._id,
@@ -59,6 +60,10 @@ class NewQuestion extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Descripción</Form.Label>
                         <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>El codigo</Form.Label>
+                        <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.code} name="code" type="text" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Imagen (URL)</Form.Label>

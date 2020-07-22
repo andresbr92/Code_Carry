@@ -1,11 +1,4 @@
-// import React, { Component } from 'react'
-// import { w3cwebsocket as W3CWebSocket } from "websocket"
-// const { Search } = Input;
-// const { Text } = Typography;
-// const { Meta } = Card;
-// import { Card, Avatar, Input, Typography } from 'antd';
-// import 'antd/dist/antd.css';
-// import './index.css'
+
 import React, { Component } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { Card, Avatar, Input, Typography } from 'antd';
@@ -14,6 +7,7 @@ import './chatPrueba.css'
 const { Search } = Input;
 const { Text } = Typography;
 const { Meta } = Card;
+
 
 const client = new W3CWebSocket('ws://127.0.0.1:8000')
 
@@ -42,6 +36,7 @@ class ChatPrueba extends Component {
 
         client.onmessage = (message) => {
             const dataFromServer = JSON.parse(message.data);
+            console.log (message)
             console.log('got reply! ', dataFromServer);
             if (dataFromServer.type === "message") {
                 this.setState((state) =>
@@ -66,6 +61,7 @@ class ChatPrueba extends Component {
 
                     <div>
                         <div className="title">
+                            <h1>Code_carry chat!</h1>
 
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', paddingBottom: 50 }}>
@@ -80,7 +76,6 @@ class ChatPrueba extends Component {
                                     />
                                 </Card>
                             )}
-                        </div>
                         <div className="bottom">
                             <Search
                                 placeholder="input message and send"
@@ -90,6 +85,7 @@ class ChatPrueba extends Component {
                                 onChange={(e) => this.setState({ searchVal: e.target.value })}
                                 onSearch={value => this.onButtonClicked(value)}
                             />
+                        </div>
                         </div>
                     </div>
 

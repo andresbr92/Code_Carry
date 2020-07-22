@@ -4,16 +4,19 @@ const Schema = mongoose.Schema
 const questionSchema = new Schema({
     title: {
         type: String,
-        required: true
+        //required: true
     },
     skill: {
         type: String,
         enum: ['javascript', 'react', 'java', 'python', 'mongodb'],
-        required: true
+       // required: true
     },
     description: {
        type: String,
-        required: true
+       // required: true
+    },
+    code: {
+        type: String
     },
     image_url: {
         type: String,

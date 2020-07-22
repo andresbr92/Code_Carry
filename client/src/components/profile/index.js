@@ -15,8 +15,7 @@ class Profile extends Component {
         this.state = {
             //TODO refactorizar user (trae el user, preguntas del user, y todas las preguntas)
             user: undefined,
-            notViewedNotification : undefined
-            
+            notViewedNotification: undefined
         }
         this.ProfileService = new ProfileService()
 
@@ -31,7 +30,6 @@ class Profile extends Component {
 
     updateUser = user_id => {
         this.ProfileService
-            //se podria meter aqui otra cosa
             .getTheUser(user_id)
             .then(response => {
                 console.log(response.data)
@@ -42,17 +40,13 @@ class Profile extends Component {
             .catch(err => console.log(err))
 
     }
-    
+
     notifications = () => {
         const mySkill = []
         const includeSkill = []
-
         this.state.user[0].skill.map(elm => mySkill.push(elm))
-        this.state.user[2].map((elm) => {
-            mySkill.includes(elm.skill) && includeSkill.push(elm)
-        })
+        this.state.user[2].map((elm) => this.state.user[0]._id != elm.userOwner && mySkill.includes(elm.skill) ? includeSkill.push(elm) : null)
         this.setState({ notViewedNotification: includeSkill })
-        console.log (includeSkill)
     }
 
 
@@ -76,12 +70,12 @@ class Profile extends Component {
                                 <img src={this.state.user[0].image_url}></img>
                                 <hr></hr>
                                 <h3>Email: {this.state.user[0].email}</h3>
-                                {/* TODO hay quue preguntar a enrique y arreglar el problema de las skills */}
+                                
                                 <h4>Hablidades en: {this.state.user[0].skill.map((elm, idx) => <p key={idx} >{elm}</p>)}</h4>
                                 <Link className="btn btn-dark btn-md" to={`/profile/edit/${this.state.user[0]._id}`} >Editar perfil</Link>
                             </Col>
                             <Col md={{ span: 4, offset: 1 }}>
-                                <Accordion defaultActiveKey="0">
+                                <Accordion defaultActiveKey="1">
                                     <Card>
                                         <Card.Header>
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -93,14 +87,14 @@ class Profile extends Component {
                                         </Accordion.Collapse>
                                     </Card>
                                 </Accordion>
-                                <Accordion defaultActiveKey="0">
+                                <hr></hr>
+                                <Accordion defaultActiveKey={!this.state.notViewedNotification ? '0' : '1'}>
                                     <Card>
                                         <Card.Header>
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                                {this.state.notViewedNotification ? <h4>TIENES NUEVAS <span>{this.state.notViewedNotification.length} </span>  NOTIFICACIONES</h4> : <h4>NO TIENES NOTIFICAIONES</h4> }
+                                                {this.state.notViewedNotification ? <h4>TIENES <span color={'red'} >{this.state.notViewedNotification.length} </span> NOTIFICACIONES NUEVAS </h4> : <h4>NO TIENES NOTIFICAIONES</h4>}
                                                 <Accordion.Collapse eventKey="0">
-                                                    {/* TODO como hacemos lo de las notificaciones ? */}
-                                                    <Card.Body> <h4> {this.state.notViewedNotification && this.state.notViewedNotification.map((elm) => <Link to={`/question/details/${elm._id}`} > <h4> {elm.title}</h4> <hr></hr> </Link>)} </h4>  </Card.Body>
+                                                    <Card.Body>  {this.state.notViewedNotification && this.state.notViewedNotification.map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}> <p> {elm.title}</p>  <hr></hr> </Link>)}  </Card.Body>
                                                 </Accordion.Collapse>
                                             </Accordion.Toggle>
                                         </Card.Header>

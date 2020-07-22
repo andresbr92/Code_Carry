@@ -69,9 +69,7 @@ class EditForm extends Component {
             .then(res => this.props.history.push(`/profile/${this.props.match.params.user_id}`))
             .catch(err => console.log(err))
     }
-    checkLanguage = (language) => {
-        return this.state.skill.includes(language)
-    }
+    checkLanguage = language => this.state.skill.includes(language)
 
     handleChecks = (e) => {
         let languagesCopy = [...this.state.skill]
