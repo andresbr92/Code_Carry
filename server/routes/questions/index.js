@@ -14,8 +14,17 @@ router.get('/',(req,res,next) => {
     Questions
     .find()
     .then(response => res.json(response))
-   .catch(err => next(err))
+    .catch(err => next(err))
 })
+
+router.post('/delete/:questions_id',(req,res,next) => {
+    Questions
+      .findByIdAndRemove(req.params.questions_id)
+      .then((response) => console.log(response))//////////////////////////////////Que poner aki
+      .catch(error => next(error))
+
+    })
+
 
 
 module.exports = router

@@ -17,7 +17,7 @@ const users = [
         password: '1234',
         image_url: null,
         email: 'andresbr92@gmail.com',
-        skills: ['javascript', 'react'],
+        skill: ['javascript', 'react'],
         role: 'ADMIN',
         questions: null,
         notifications: null
@@ -28,7 +28,7 @@ const users = [
         password: '1234',
         image_url: null,
         email: 'gabitocho@gmail.com',
-        skills: ['javascript', 'java'],
+        skill: ['javascript', 'java'],
         role: 'ADMIN',
         questions: null,
         notifications: null
@@ -44,7 +44,7 @@ const questions = [{
     userOwner: null
 }, {
     title: 'Las props nativas',
-    skills: ['react'],
+    skill: 'react',
     description: 'Problema muy tocho',
     image_url: 'https://awebytes.files.wordpress.com/2018/05/factorial_rescursiva.png?w=584',
     userOwner: '5f130065006bb6df8056bf1b'

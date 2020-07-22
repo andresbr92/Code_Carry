@@ -31,6 +31,16 @@ class QuestionDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    removeQuestion = () => {
+
+        const id = this.props.match.params.question_id
+
+        this.QuestionService
+        .removeQuestion(id)
+        .then(()=>   this.props.history.goBack)
+        .catch(err => console.log(err))
+      
+    }
 
     render() {
         return (
@@ -49,6 +59,9 @@ class QuestionDetails extends Component {
                             <hr></hr>
                             <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
                             <hr></hr>
+                            <Button onClick={this.removeQuestion} className="btn btn-dark btn-md">Eliminar pregunta</Button>
+                            <hr></hr>
+                            <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
                         </Col>
                         <Col md={{ span: 4, offset: 1 }}>
                             <img src={this.state.questionDetails.image_url} alt={this.state.questionDetails.title} />

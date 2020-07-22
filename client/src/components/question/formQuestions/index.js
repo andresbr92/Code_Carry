@@ -15,44 +15,31 @@ class NewQuestion extends Component {
             description: '',
             image_url: '',
             userOwner: ''
-
         }
-
         this.ProfileService = new ProfileService()
-
     }
-
     handleInputChange = e => {
         const { name, value } = e.target
-        console.log(e.target.checked)
+        
         this.setState({
             [name]: value,
             userOwner: this.props.loggedInUser._id,
-
         })
     }
 
     handleFormSubmit = e => {
-
         e.preventDefault()
         this.ProfileService
             .makeQuestion(this.state)
-            .then()
+            .then(()=> this.props.handleModal(false))
             .catch(err => console.log(err))
+             
     }
-
     checkLanguage = language => this.state.skill == language || false
-        // if (this.state.skill == language) {
-        //     return true
-        // } else { return false }
-    
-
+      
     handleChecks = (e) => e.target.checked ? this.setState({ skill: e.target.value }) : this.setState({ skill: !e.target.value })
-    
     render() {
-
         return (
-
             <Container>
                 <h3>Nueva pregunta</h3>
                 <hr></hr>
@@ -81,11 +68,10 @@ class NewQuestion extends Component {
                         <Form.Label>Imagen (URL)</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.image_url} name="image_url" type="text" />
                     </Form.Group>
-                    <Button onClick={this.props.history.goBack} variant="dark" type="submit">Hacer pregunta</Button>
+                    <Button variant="dark" type="submit">Hacer pregunta</Button>
                 </Form>
             </Container>
         )
     }
 }
-
 export default NewQuestion
