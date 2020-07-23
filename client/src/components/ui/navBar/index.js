@@ -5,10 +5,6 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 
-
-
-
-
 import AuthService from './../../../service/authService'
 import { Link, NavLink } from 'react-router-dom'
 
@@ -43,19 +39,20 @@ class Navigation extends Component {
     render() {
         return (
             <>
-                <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
+                <Navbar bg="light" variant="dark" expand="lg" sticky="top" >
                     <Navbar.Brand>
+                    <img src="./../../../../images/Logo.PNG" className="logo mb-1 mr-3"></img>
                         <Link to="/">Code_Carry</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
-                            <Form inline>
-                                <FormControl onChange={this.handleInputChange} name='inputSearch' value={this.state.inputSearch} type="text" placeholder="Search" className="mr-sm-2" />
-                                <Button variant="outline-primary">Search</Button>
+                            <Form inline className="mr-5">
+                                <FormControl onChange={this.handleInputChange} name='inputSearch' value={this.state.inputSearch} type="text" placeholder="Buscar" className="mr-sm-2" />
+                                <Button variant="outline-secondary">Buscar</Button>
                             </Form>
                             <Nav.Link as="span">
-                                <NavLink to="/" exact activeStyle={{ color: 'white' }}>Inicio</NavLink>
+                                <NavLink to="/" exact activeStyle={{ color: 'black' }} className="mr-5">Inicio</NavLink>
                             </Nav.Link>
 
 
@@ -64,7 +61,7 @@ class Navigation extends Component {
                                     <>
                                       
                                         <Nav.Link as="span">
-                                            <NavLink to={`/chat`} activeStyle={{ color: 'white' }}>chat</NavLink>
+                                            <NavLink to={`/chat`} activeStyle={{ color: 'black' }} className="mr-5">chat</NavLink>
                                         </Nav.Link>
                                         <Nav.Link as="span">
                                             <span onClick={this.logout}>Cerrar sesión</span>
@@ -73,10 +70,10 @@ class Navigation extends Component {
                                 ) : (
                                     <>
                                         <Nav.Link as="span">
-                                            <NavLink to="/auth/signup" activeStyle={{ color: 'white' }}>Registro</NavLink>
+                                            <NavLink to="/auth/signup" activeStyle={{ color: 'black' }} className="mr-5">Registro</NavLink>
                                         </Nav.Link>
                                         <Nav.Link as="span">
-                                            <NavLink to="/auth/login" activeStyle={{ color: 'white' }}>Inicio sesión</NavLink>
+                                            <NavLink to="/auth/login" activeStyle={{ color: 'black' }} className="mr-5">Inicio sesión</NavLink>
                                         </Nav.Link>
                                     </>
                                 )
@@ -84,7 +81,7 @@ class Navigation extends Component {
                             
 
                             <Nav.Link as="span">
-                                <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'white' }}>Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
+                                <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'black' }} className="mr-5">Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
                             </Nav.Link>
                         </Nav>
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProfileService from './../../service/profileService'
-
+import FilesService from './../../service/fileService'
+import Spinner from './../ui/spinner'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -21,6 +22,8 @@ class EditForm extends Component {
         }
 
         this.ProfileService = new ProfileService()
+        //  this.FilesService = new FilesService()    // CLOUDINARYCONFIG 
+        // TODO
     }
 
     componentDidMount = () => {
@@ -39,7 +42,7 @@ class EditForm extends Component {
 
                     username: response.data.username,
                     role: response.data.role,
-                    image_url: response.data.image_url,
+                   // image_url: response.data.image_url,//////////////////////////////////Ver
                     email: response.data.email,
                     skill: response.data.skill,
                     editing: false,
@@ -48,6 +51,20 @@ class EditForm extends Component {
 
             .catch(err => console.log(err))
     }
+
+     // CLOUDINARYCONFIG  
+    //  handleFileUpload = e => {
+    //     const uploadData = new FormData()
+    //     uploadData.append("image_url", e.target.files[0])
+
+    //     this.filesService.handleUpload(uploadData)
+    //         .then(response => {
+    //             console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
+    //             this.setState({ image_url: response.data.secure_url })
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+    // TODO
 
 
     handleInputChange = e => {
@@ -86,17 +103,19 @@ class EditForm extends Component {
         
 
         return (
-            this.state.editing ? <h3>CARGANDO</h3> :
+            this.state.editing ? <Spinner /> :
                 <Container>
                     <Form onSubmit={this.handleFormSubmit}>
                         <Form.Group>
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
                         </Form.Group>
-                        <Form.Group>
-                            <Form.Label>imagen</Form.Label>
-                            <img src={this.state.image_url} alt='perfil' ></img>
-                        </Form.Group>
+                          {/* // CLOUDINARYCONFIG   */}
+                     <Form.Group>
+                        <Form.Label>Imagen (archivo)</Form.Label>
+                        <Form.Control name="image_url" type="file" onChange={this.handleFileUpload} />
+                    </Form.Group>
+                 
                         <Form.Group>
                             <Form.Label>Email</Form.Label>
                             <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="email" />

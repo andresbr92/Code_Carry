@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import QuestionService from './../../../service/questionService'
+import Spinner from './../../ui/spinner'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -9,8 +10,8 @@ import Highlight from 'react-highlight.js'
 
 class QuestionDetails extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
 
             questionDetails: undefined
@@ -31,22 +32,11 @@ class QuestionDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    removeQuestion = () => {
-
-        const id = this.props.match.params.question_id
-
-        this.QuestionService
-        .removeQuestion(id)
-        .then(()=>   this.props.history.goBack)
-        .catch(err => console.log(err))
-      
-    }
-
     render() {
         return (
             
 
-            !this.state.questionDetails ? <h3>CARGANDO</h3> :
+            !this.state.questionDetails ? <Spinner /> :
                 
 
                 <Container as="main">
@@ -58,10 +48,7 @@ class QuestionDetails extends Component {
                             <p><b>Detalles: </b> {this.state.questionDetails.description} </p>
                             <hr></hr>
                             <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
-                            <hr></hr>
-                            <Button onClick={this.removeQuestion} className="btn btn-dark btn-md">Eliminar pregunta</Button>
-                            <hr></hr>
-                            <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
+                            <hr></hr>                         
                         </Col>
                         <Col md={{ span: 4, offset: 1 }}>
                             <img src={this.state.questionDetails.image_url} alt={this.state.questionDetails.title} />

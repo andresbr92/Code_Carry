@@ -38,13 +38,13 @@ class SignupForm extends Component {
 
     render() {
         return (
-            <Container as="main">
+            <Container as="main" className="mt-5 text-white">
 
                 <Row>
                     <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Registro de usuario</h3>
+                        <h3 className="text-white text-center">Registro de usuario</h3>
 
-                        <hr></hr>
+                        <hr className="hr-secondary"></hr>
 
                         <Form onSubmit={this.handleFormSubmit}>
 
@@ -59,7 +59,7 @@ class SignupForm extends Component {
                                 <Form.Text className="text-muted">Mínimo tres caracteres</Form.Text>
                             </Form.Group>
 
-                            <Button variant="dark" type="submit">Registrarme</Button>
+                            <button className="botton" id="start-button"> <span>Regístrate</span></button>
                         </Form>
 
                     </Col>

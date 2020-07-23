@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import NewQuestion from '../../question/formQuestions';
 import Button from 'react-bootstrap/Button'
+import Spinner from './../spinner'
 
 class Home extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class Home extends Component {
         this.state = {
 
             questions: undefined,
-            showModal: false
+            showModal: false,
+           
 
         }
         this.QuestionService = new QuestionService()
@@ -36,7 +38,10 @@ class Home extends Component {
     }
 
 
+
     handleModal = status => this.setState({ showModal: status })
+
+  
 
     handleQuestionSubmit = () => {
         this.handleModal(false)
@@ -49,11 +54,11 @@ class Home extends Component {
 
                 {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Crear nuevo item</Button>}
 
-                <h1>Bienvenido a CODE_CARRY</h1>
-                <hr></hr>
+                <h1 className="titular">Bienvenido a CODE_CARRY</h1>
+                <hr className='hr-home'></hr>
                 <Container as="main" className="home-page">
 
-                    {!this.state.questions ? <h2>Cargando...</h2> :
+                    {!this.state.questions ? <Spinner /> :
 
                         <Row>
                             {this.state.questions.filter((elm) => elm.title.toLowerCase().includes(this.props.handleSearch)).map((elm, idx) => <CuestionCard {...elm} key={idx} handleChange={() => this.handleInputChange(idx)} />)}
