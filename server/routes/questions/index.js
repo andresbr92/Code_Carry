@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Questions = require("./../../models/question.model")
-const Question = require('./../../models/question.model')
+
 
 router.get('/details/:question_id', (req, res, next) => {
     Questions
@@ -26,8 +26,13 @@ router.post('/delete/:questions_id',(req,res,next) => {
 
 })
 router.post('/tryHelp/:question_id', (req, res, next) => {
+    console.log(req.body, '<=================================================================')
+    
     Questions
-        .findByIdAndUpdate(req.params.question_id, { tryHelp: true })
+        .findByIdAndUpdate(req.params.question_id, {
+            tryHelp: true,
+            video_id: req.body.video_id
+        })
         .then(response => console.log(response))
         .catch(err =>  console.log (err))
 

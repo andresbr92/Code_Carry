@@ -5,6 +5,7 @@ import { Card, Avatar, Input, Typography } from 'antd';
 import 'antd/dist/antd.css';
 import './chatPrueba.css'
 import Container from 'react-bootstrap/Container'
+import Room from './videoPrueba/room'
 const { Search } = Input;
 const { Text } = Typography;
 const { Meta } = Card;
@@ -62,6 +63,8 @@ class ChatPrueba extends Component {
                 <div className="main">
 
                     <div>
+                        
+                        <Room {...this.props}/>
                        
                         <div style={{ display: 'flex', flexDirection: 'column', paddingBottom: 50 }}>
                             {this.state.messages.map(message =>

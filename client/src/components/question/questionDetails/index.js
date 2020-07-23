@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/esm/Button'
 import Highlight from 'react-highlight.js'
+import { v1 as uuid } from "uuid";
 
 class QuestionDetails extends Component {
 
@@ -14,6 +15,7 @@ class QuestionDetails extends Component {
         this.state = {
 
             questionDetails: undefined,
+            video_idState:undefined
 
 
         }
@@ -43,14 +45,23 @@ class QuestionDetails extends Component {
 
     }
     resolveQuestion = () => {
+        const video_id = uuid()
+        this.setState({ video_idState: video_id })
+
         const question_id = this.state.questionDetails._id  
-        const value = true
+        this.componentDidMount()
+
         this.QuestionService
-            .resolveQuestionBack(question_id, value)
+            .resolveQuestionBack(question_id, {video_id:video_id})
             .then()
             .catch(err => console.log(err))
-        this.componentDidMount()
+        
     }
+   
+
+        // return (
+        //     <button onClick={create}>Create room</button>
+        // );
 
     render() {
         return (
@@ -85,7 +96,7 @@ class QuestionDetails extends Component {
                     {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
                     {this.props.loggedInUser && <Button className="btn btn-dark btn-md ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button>}
                     <hr></hr>
-                    {this.state.questionDetails.tryHelp && <Link  className="btn btn-danger btn-md" to={'/chat'} >IR AL CHAT</Link>}
+                    {this.state.questionDetails.tryHelp && <Link className="btn btn-danger btn-md" to={`/chat/${this.state.questionDetails.video_id}`} >IR AL CHAT</Link>}
 
                 </Container>
 

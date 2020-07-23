@@ -4,12 +4,6 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
-import AutoComplete from 'react-autocomplete'
-
-
-
-
-
 import AuthService from './../../../service/authService'
 import { Link, NavLink } from 'react-router-dom'
 
@@ -62,7 +56,7 @@ class Navigation extends Component {
 
                             {this.props.loggedInUser ?
                                 (
-                                    <>                
+                                    <>
                                         <Nav.Link as="span">
                                             <span onClick={this.logout}>Cerrar sesión</span>
                                         </Nav.Link>

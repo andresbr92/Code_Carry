@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom'
@@ -16,9 +15,10 @@ import QuestionDetails from './question/questionDetails';
 import ChatPrueba from './ui/chatPrueba/chatPrueba';
 import Home from './ui/home'
 import FooterPagePro from './ui/footer'
-import ResolvePage from './ui/chatPrueba/myChat';
+import CreateRoom from './../components/ui/chatPrueba/videoPrueba/createRoom'
+import Room from './../components/ui/chatPrueba/videoPrueba/room'
 
-
+//TODO como hacer que la pregunta se vuelva privada solo para esaas dos personas
 class App extends Component {
   constructor(props) {
     super(props)
@@ -72,7 +72,8 @@ class App extends Component {
 
           <Route exact path='/' render={props => <Home handleSearch={this.state.filteredSearch} loggedInUser={this.state.loggedInUser}  {...props} />} />
           {/* EN DESARROLLO */}
-          <Route exact path='/chat' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
+          
+          <Route exact path='/chat/:video_id' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
       
         </Switch>
         <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />

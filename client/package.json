@@ -22,7 +22,10 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
     "react-scroll-to-bottom": "^3.0.0",
+    "simple-peer": "^9.7.2",
     "socket.io-client": "^2.3.0",
+    "styled-components": "^5.1.1",
+    "uuid": "^8.2.0",
     "websocket": "^1.0.31"
   },
   "scripts": {

@@ -32,6 +32,10 @@ const questionSchema = new Schema({
     tryHelp: {
         type: Boolean,
         default: false
+    },
+    video_id: {
+        type: String,
+        default:null
     }
     //TODO añadir aqui el ide del usuario que lo haya visto o que se haya renderizado o con un boton 
 
