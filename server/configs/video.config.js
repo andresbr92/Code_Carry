@@ -11,20 +11,19 @@ const users = {};
 const socketToRoom = {};
 
 io.on('connection', socket => {
-    socket.on("join room", roomID => {
-        if (users[roomID]) {
-            const length = users[roomID].length;
+    socket.on("join room", video_id => {
+        if (users[video_id]) {
+            const length = users[video_id].length;
             if (length === 2) {
                 socket.emit("room full");
                 return;
             }
-            users[roomID].push(socket.id);
+            users[video_id].push(socket.id);
         } else {
-            console.log (users, '<=========================================================================================')
-            users[roomID] = [socket.id];
+            users[video_id] = [socket.id];
         }
-        socketToRoom[socket.id] = roomID;
-        const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
+        socketToRoom[socket.id] = video_id;
+        const usersInThisRoom = users[video_id].filter(id => id !== socket.id);
 
         socket.emit("all users", usersInThisRoom);
     });
@@ -38,16 +37,16 @@ io.on('connection', socket => {
     });
 
     socket.on('disconnect', () => {
-        const roomID = socketToRoom[socket.id];
-        let room = users[roomID];
+        const video_id = socketToRoom[socket.id];
+        let room = users[video_id];
         if (room) {
             room = room.filter(id => id !== socket.id);
-            users[roomID] = room;
+            users[video_id] = room;
         }
     });
 
 });
 
-server.listen( 7000, () => console.log('serverVIDEO is running on port 7000'));
+server.listen(6000, () => console.log('serverVIDEO is running on port 7000'));
 
 

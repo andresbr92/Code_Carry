@@ -15,8 +15,7 @@ import QuestionDetails from './question/questionDetails';
 import ChatPrueba from './ui/chatPrueba/chatPrueba';
 import Home from './ui/home'
 import FooterPagePro from './ui/footer'
-import CreateRoom from './../components/ui/chatPrueba/videoPrueba/createRoom'
-import Room from './../components/ui/chatPrueba/videoPrueba/room'
+
 
 //TODO como hacer que la pregunta se vuelva privada solo para esaas dos personas
 class App extends Component {
