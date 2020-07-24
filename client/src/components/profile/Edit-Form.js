@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProfileService from './../../service/profileService'
-import FilesService from './../../service/fileService'
+//import FilesService from './../../service/fileService'
 import Spinner from './../ui/spinner'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -15,14 +15,14 @@ class EditForm extends Component {
         this.state = {
             username: '',
             role: '',
-            image_url: '',
+            imageUrl: '',
             email: '',
             skill: [''],
             editing: true
         }
 
         this.ProfileService = new ProfileService()
-        //  this.FilesService = new FilesService()    // CLOUDINARYCONFIG 
+        //this.FilesService = new FilesService()    // CLOUDINARYCONFIG 
         // TODO
     }
 
@@ -52,15 +52,15 @@ class EditForm extends Component {
             .catch(err => console.log(err))
     }
 
-     // CLOUDINARYCONFIG  
+    //  // CLOUDINARYCONFIG  
     //  handleFileUpload = e => {
     //     const uploadData = new FormData()
-    //     uploadData.append("image_url", e.target.files[0])
+    //     uploadData.append("imageUrl", e.target.files[0])
 
     //     this.filesService.handleUpload(uploadData)
     //         .then(response => {
     //             console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
-    //             this.setState({ image_url: response.data.secure_url })
+    //             this.setState({ imageUrl: response.data.secure_url })
     //         })
     //         .catch(err => console.log(err))
     // }
@@ -113,7 +113,7 @@ class EditForm extends Component {
                           {/* // CLOUDINARYCONFIG   */}
                      <Form.Group>
                         <Form.Label>Imagen (archivo)</Form.Label>
-                        <Form.Control name="image_url" type="file" onChange={this.handleFileUpload} />
+                        <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload} />
                     </Form.Group>
                  
                         <Form.Group>

@@ -8,6 +8,6 @@ module.exports = app => {
     app.use('/chat', require('./chat'))
     
     // CLOUDINARYCONFIG 
-    // app.use('/files', require('./files.routes'))
+    //app.use('/files', require('./files.routes'))
     // TODO
 }
