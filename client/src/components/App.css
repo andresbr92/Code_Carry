@@ -7,6 +7,9 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
 }
+.navigation {
+  background-color: #dee2e6;
+}
 
 h1, h2, h3 {
   font-weight: 300;
@@ -16,8 +19,11 @@ h1, h2, h3 {
 a, a:hover {
   font-family: 'Dosis', sans-serif;
  font-size: 1.3em;
-  color: inherit;
+  color: black;
   text-decoration: none;
+}
+p {
+  color: whitesmoke;
 }
 
 img {

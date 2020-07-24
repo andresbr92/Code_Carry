@@ -38,7 +38,7 @@ class Navigation extends Component {
     render() {
         return (
             <>
-                <Navbar bg="light" variant="dark" expand="lg" sticky="top" >
+                <Navbar  className= 'navigation' variant="dark" expand="lg" sticky="top" >
                     <Navbar.Brand>
                     <img src="./../../../../images/Logo.PNG" className="logo mb-1 mr-3"></img>
                         <Link to="/">Code_Carry</Link>
@@ -59,7 +59,7 @@ class Navigation extends Component {
                                 (
                                     <>
                                         <Nav.Link as="span">
-                                            <span onClick={this.logout}>Cerrar sesión</span>
+                                            <NavLink to='/' onClick={this.logout} activeStyle={{ color: 'black' }} className="mr-5">Cerrar Sesión</NavLink>
                                         </Nav.Link>
                                     </>
                                 ) : (
