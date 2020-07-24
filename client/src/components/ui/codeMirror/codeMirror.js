@@ -1,50 +1,6 @@
-// import React, { Component } from 'react'
-// import Codemirror from 'react-codemirror';
-// import 'codemirror/lib/codemirror.css';
-// import 'codemirror/theme/monokai.css';
-// import 'codemirror/mode/javascript/javascript.js'
 
-// const io = require('socket.io-client')
-// const socket = io.connect()
-
-
-// class Room extends React.Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             code: '',
-//             mode: 'javascript',
-//             theme: 'eclipse',
-//             users: [],
-//             currentlyTyping: null
-//         }
-        
-//     }
-  
-
-    
-
-//     render() {
-//         const options = {
-//             lineNumbers: true,
-//             mode: 'javascript',
-//             theme: 'monokai'
-//         }
-//         return (
-//             <div>
-//                 <h1>hola</h1>
-//             </div>
-//         )
-//     }
-// }
-// export default Room
 import React from 'react'
-import Codemirror from 'react-codemirror';
-
-
-
-
-
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import { Button } from 'react-bootstrap'
 
 import 'codemirror/lib/codemirror.css';
@@ -81,13 +37,34 @@ socket.on('news', function (data) {
 class Room extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { code: '', mode: 'javascript', theme: 'eclipse', users: [], currentlyTyping: null }
-        socket.on('receive code', (payload) => this.updateCodeInState(payload));
-        socket.on('receive change mode', (newMode) => this.updateModeInState(newMode))
-        socket.on('new user join', (users) => this.joinUser(users))
-        socket.on('load users and code', () => this.sendUsersAndCode())
-        socket.on('receive users and code', (payload) => this.updateUsersAndCodeInState(payload))
-        socket.on('user left room', (user) => this.removeUser(user))
+        this.codeIsHappening = this.codeIsHappening.bind(this)
+        this.state = { code: '', mode: 'javascript', theme: 'material', users: [], currentlyTyping: null, }
+
+        socket.on('receive code', (payload) => {
+            alert ('receibe codie')
+           return this.updateCodeInState(payload)
+        });
+        
+        socket.on('new user join', (users) => {
+            alert ('join user')
+            return this.joinUser(users)
+        })
+
+        socket.on('load users and code', () => {
+            alert ('load user and code')
+            return this.sendUsersAndCode()
+        })
+
+        socket.on('receive users and code', (payload) => {
+            alert ('recive users and code')
+            
+            return this.updateUsersAndCodeInState(payload)
+        })
+
+        socket.on('user left room', (user) => {
+            alert ('user left room')
+            return this.removeUser(user)
+        })
     }
     componentDidMount() {
         if (this.props.match.params.video_id == undefined) {
@@ -98,6 +75,7 @@ class Room extends React.Component {
             const users = [...this.state.users, this.props.loggedInUser.username]
             socket.emit('room', { room: this.props.match.params.video_id, user: user });
             this.setState({ users: users })
+            console.log ('asdfasdf')
         }
     }
     
@@ -111,6 +89,7 @@ class Room extends React.Component {
         const users = [...this.state.users, user]
         socket.emit('room', { room: nextProps.video_id, user: user });
         this.setState({ users: users })
+        console.log('asdfasdf')
     }
 
     sendUsersAndCode() {
@@ -122,6 +101,7 @@ class Room extends React.Component {
         const indexOfUserToDelete = this.state.users.findIndex(Olduser => { return Olduser == user.user })
         newUsers.splice(indexOfUserToDelete, 1);
         this.setState({ users: newUsers })
+        console.log('asdfasdf')
     }
 
     joinUser(user) {
@@ -129,17 +109,21 @@ class Room extends React.Component {
         const newUsers = Array.from(new Set(combinedUsers));
         const cleanUsers = newUsers.filter(user => { return user.length > 1 })
         this.setState({ users: cleanUsers })
+        console.log('asdfasdf')
     }
 
 
     updateCodeInState(payload) {
+        console.log (payload, 'soy updateCodeInstate')
         this.setState({
             code: payload.code,
             currentlyTyping: payload.currentlyTyping
         });
+        
     }
 
     updateCodeForCurrentUser(newCode) {
+        console.log (newCode, 'soy updateforcurrentuser')
         this.setState({
             code: newCode
         }, () => this.componentDidMount())
@@ -151,7 +135,8 @@ class Room extends React.Component {
         })
     }
 
-    updateUsersAndCodeInState(payload) {
+    updateUsersAndCodeInState (payload)  {
+        console.log (payload, 'soy UPDATEuserANDcodeInsState')
         const combinedUsers = this.state.users.concat(payload.users)
         const newUsers = Array.from(new Set(combinedUsers));
         const cleanUsers = newUsers.filter(user => { return user.length > 1 })
@@ -159,6 +144,7 @@ class Room extends React.Component {
     }
 
     codeIsHappening(newCode) {
+        console.log('asdfasdf')
         this.updateCodeForCurrentUser(newCode)
         this.updateCurrentlyTyping()
         socket.emit('coding event', { code: newCode, room: this.props.match.params.video_id, currentlyTyping: this.props.loggedInUser.username })
@@ -167,24 +153,17 @@ class Room extends React.Component {
 
     updateCurrentlyTyping() {
         this.setState({ currentlyTyping: this.props.loggedInUser.username })
+        console.log('asdfasdf')
     }
 
-    changeMode(newMode) {
-        this.updateModeInState(newMode)
-        socket.emit('change mode', { mode: newMode, room: this.props.match.params.video_id })
-    }
+    
 
-    changeTheme(newTheme) {
-        this.setState({ theme: newTheme })
-    }
+   
 
-    clearCode(e) {
-        e.preventDefault();
-        this.setState({ code: '' })
-        socket.emit('coding event', { code: '', room: this.props.match.params.video_id })
-    }
+   
 
     render() {
+        
         var options = {
             lineNumbers: true,
             mode: this.state.mode,
@@ -194,14 +173,18 @@ class Room extends React.Component {
             
             <div>
                 
-                
-                
-                
-                <Codemirror value={this.state.code} onChange={this.codeIsHappening.bind(this)} options={options} />
+                <CodeMirror
+                    value={this.state.code}
+                    options={options}
+                    onBeforeChange={(editor, data, code) => {
+                        this.setState({ code });
+                    }}
+                    onChange={(editor, value) =>  this.codeIsHappening.bind(this)}
+                />
                 <br />
                
                 <br />
-                <Button onClick={this.clearCode.bind(this)} className="col-lg-12">clear code</Button>
+                <Button  className="col-lg-12">clear code</Button>
             </div>
 
         )
