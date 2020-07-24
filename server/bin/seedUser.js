@@ -15,7 +15,7 @@ const users = [
     {
         username: 'Andres Barros Rivas',
         password: '1234',
-        image_url: null,
+        imageUrl: null,
         email: 'andresbr92@gmail.com',
         skill: ['javascript', 'react'],
         role: 'ADMIN',
@@ -26,7 +26,7 @@ const users = [
     {
         username: 'Gabriel Moreno',
         password: '1234',
-        image_url: null,
+        imageUrl: null,
         email: 'gabitocho@gmail.com',
         skill: ['javascript', 'java'],
         role: 'ADMIN',
@@ -40,13 +40,13 @@ const questions = [{
     title: 'Que fue antes el huevo o la gallina??',
     skills: ['javascript'],
     description: 'Problema tocho',
-    image_url: 'https://awebytes.files.wordpress.com/2018/05/factorial_rescursiva.png?w=584',
+    imageUrl: 'https://awebytes.files.wordpress.com/2018/05/factorial_rescursiva.png?w=584',
     userOwner: null
 }, {
     title: 'Las props nativas',
     skill: 'react',
     description: 'Problema muy tocho',
-    image_url: 'https://awebytes.files.wordpress.com/2018/05/factorial_rescursiva.png?w=584',
+    imageUrl: 'https://awebytes.files.wordpress.com/2018/05/factorial_rescursiva.png?w=584',
     userOwner: '5f130065006bb6df8056bf1b'
 },]
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import QuestionService from './../../../service/questionService'
+import Spinner from './../../ui/spinner'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -10,8 +11,8 @@ import { v1 as uuid } from "uuid";
 
 class QuestionDetails extends Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
 
             questionDetails: undefined,
@@ -67,8 +68,8 @@ class QuestionDetails extends Component {
         return (
 
 
-            !this.state.questionDetails ? <h3>CARGANDO</h3> :
-
+            !this.state.questionDetails ? <Spinner /> :
+                
 
                 <Container as="main">
 
@@ -77,9 +78,9 @@ class QuestionDetails extends Component {
                     <Row>
                         <Col md={{ span: 5, offset: 1 }}>
                             <p><b>Detalles: </b> {this.state.questionDetails.description} </p>
-                            <hr></hr>
+                            <hr/>
                             <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
-                            <hr></hr>
+                            <hr/>
 
                         </Col>
                         <Col md={{ span: 4, offset: 1 }}>

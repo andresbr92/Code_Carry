@@ -18,9 +18,10 @@ router.get('/',(req,res,next) => {
     .catch(err => next(err))
 })
 
-router.post('/delete/:questions_id',(req,res,next) => {
+router.post('/delete/:question_id',(req,res,next) => {
+   
     Questions
-      .findByIdAndRemove(req.params.questions_id)
+      .findByIdAndRemove(req.params.question_id)
       .then((response) => console.log(response))//////////////////////////////////Que poner aki
       .catch(error => next(error))
 

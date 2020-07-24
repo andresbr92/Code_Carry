@@ -28,12 +28,16 @@ class App extends Component {
         text: '',
 
       },
-      filteredSearch: ''
+      filteredSearch: '',
+    
     }
+
+
     this.AuthService = new AuthService()
 
   }
 
+  
   handleSearch = inputSearch => this.setState({ filteredSearch: inputSearch })
    // const filtered = this.state.filteredSearch.filter((elm) => elm.name.toLowerCase().includes(inputSearch))
   setTheUser = user => this.setState({ loggedInUser: user }, () => console.log("El estado de App ha cambiado:", this.state))
@@ -48,14 +52,13 @@ class App extends Component {
     return (
       <>
 
-        <Navigation handleSearch={this.handleSearch} setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+        <Navigation handleSearch={this.handleSearch} setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
 
         <Switch>
 
           {/* AUTH */}
           <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} />} />
           <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
-
 
           {/* PROFILE */}
           <Route exact path='/profile/edit/:user_id' render={props =>

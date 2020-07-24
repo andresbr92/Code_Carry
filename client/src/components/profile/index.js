@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import ProfileService from './../../service/profileService'
+import QuestionService from '../../service/questionService';////////////////////////////
+import Spinner from './../ui/spinner'
 import { Link } from 'react-router-dom'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -10,15 +12,15 @@ import Button from 'react-bootstrap/Button'
 import QuestionDetails from './../../components/question/questionDetails'
 
 class Profile extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             //TODO refactorizar user (trae el user, preguntas del user, y todas las preguntas)
             user: undefined,
             notViewedNotification: undefined
         }
         this.ProfileService = new ProfileService()
-
+        this.QuestionService = new QuestionService()
     }
 
     componentDidMount = () => {
@@ -29,18 +31,31 @@ class Profile extends Component {
     }
 
     updateUser = user_id => {
+     
         this.ProfileService
             .getTheUser(user_id)
             .then(response => {
                 console.log(response.data)
                 this.setState({ user: response.data }, () => {
                     this.notifications()
-                })
+                
+        })
             })
             .catch(err => console.log(err))
 
     }
+  
+    removeQuestionProfile = (question_id) => {
 
+        this.QuestionService
+        .removeQuestion(question_id)
+        .then()
+        .catch(err => console.log(err))
+
+        this.updateUser(this.state.user[0]._id)
+
+    }
+     
     notifications = () => {
         const mySkill = []
         const includeSkill = []
@@ -56,13 +71,13 @@ class Profile extends Component {
 
         return (
 
-            !this.state.user ? <h3>CARGANDO</h3> :
+            !this.state.user ? <Spinner /> :
 
                 <>
 
-                    <Container as="main">
+                    <Container as="main" className="mt-5 mb-5 text-center">
 
-                        <h1>bienvenido a tu perfil {this.state.user[0].username}</h1>
+                        <h1 className="text-">Bienvenido a tu perfil {this.state.user[0].username}</h1>
 
                         <Row>
                             <Col md={{ span: 5, offset: 1 }}>
@@ -83,7 +98,7 @@ class Profile extends Component {
                                             </Accordion.Toggle>
                                         </Card.Header>
                                         <Accordion.Collapse eventKey="0">
-                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`}> {elm.tryHelp ? <p style={{ backgroundColor: '#d69c2a' }} >titulo :{elm.title} </p> : <p >titulo :{elm.title} </p>  } </Link>)}</h4> </Card.Body>
+                                            <Card.Body>  <h4>{this.state.user[1].map((elm) => <> <Link key={elm._id} to={`/question/details/${elm._id}`}> {elm.tryHelp ? <p style={{ backgroundColor: '#d69c2a' }} >titulo :{elm.title} </p> : <p >titulo :{elm.title} </p>} </Link><Button onClick={() => this.removeQuestionProfile(elm._id)}>ELiminar</Button></>)}</h4> </Card.Body>
                                         </Accordion.Collapse>
                                     </Card>
                                 </Accordion>

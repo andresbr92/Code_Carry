@@ -37,13 +37,13 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <Container as="main">
+            <Container as="main" className="mt-5 text-white">
 
                 <Row>
                     <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Inicio de sesión</h3>
+                        <h3 className="text-white text-center">Inicio de sesión</h3>
 
-                        <hr></hr>
+                        <hr className="hr-secondary"></hr>
 
                         <Form onSubmit={this.handleFormSubmit}>
 
@@ -57,14 +57,13 @@ class LoginForm extends Component {
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
                                 <Form.Text className="text-muted">Mínimo tres caracteres</Form.Text>
                             </Form.Group>
-
-                            <Button variant="dark" type="submit">Iniciar sesión</Button>
-                        </Form>
-
+                             <button className="botton" id="start-button">
+                
+                               <span>Iniciar Sesión</span>
+                              </button>
+                       </Form>
                     </Col>
                 </Row>
-
-
             </Container>
         )
     }

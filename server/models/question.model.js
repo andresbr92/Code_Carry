@@ -18,7 +18,7 @@ const questionSchema = new Schema({
     code: {
         type: String
     },
-    image_url: {
+    imageUrl: {
         type: String,
     },
     userOwner: {
