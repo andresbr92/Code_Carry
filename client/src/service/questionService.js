@@ -15,4 +15,5 @@ export default class QuestionService {
     allQuestions = () => this.service.get('/question')
     removeQuestion = question_id => this.service.post(`/question/delete/${question_id}`)
     resolveQuestionBack = (question_id, video_id) => this.service.post(`question/tryHelp/${question_id}`, video_id)
+    getChatQuestion = video_id => this.service.get (`/question/codemirror/getQuestion/${video_id}`)
 }

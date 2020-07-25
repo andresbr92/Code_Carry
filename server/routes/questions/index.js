@@ -27,7 +27,6 @@ router.post('/delete/:question_id',(req,res,next) => {
 
 })
 router.post('/tryHelp/:question_id', (req, res, next) => {
-    console.log(req.body, '<=================================================================')
     
     Questions
         .findByIdAndUpdate(req.params.question_id, {
@@ -37,6 +36,13 @@ router.post('/tryHelp/:question_id', (req, res, next) => {
         .then(response => console.log(response))
         .catch(err =>  console.log (err))
 
+})
+router.get('/codemirror/getQuestion/:video_id', (req, res) => { 
+   
+    Questions
+        .find({ "video_id": req.params.video_id })
+        .then(response => res.json(response))
+        .catch(err => console.log (err))
 })
 
 

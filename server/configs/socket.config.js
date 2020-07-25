@@ -24,12 +24,18 @@ module.exports = (io) => {
         })
 
         socket.on('coding event', function (data) {
-            console.log('in EXPRESS coding event')
-            console.log(data)
-            socket.broadcast.to(data.room).emit('receive code', { code: data.code, currentlyTyping: data.currentlyTyping });
-        })
-        socket.on('change mode', function (data) {
-            socket.broadcast.to(data.room).emit('receive change mode', data.mode)
+            const queueEvent = []
+            queueEvent.push(data)
+            
+            
+            
+            const lastOne = queueEvent.splice(queueEvent.length - 1, 1)
+            console.log (lastOne[0].code)
+
+
+            // console.log('in EXPRESS coding event')
+            // console.log(data)
+            socket.broadcast.to(data.room).emit('receive code', { code: lastOne[0].code});
         })
 
         socket.on('send users and code', function (data) {
