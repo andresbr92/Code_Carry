@@ -26,15 +26,8 @@ module.exports = (io) => {
         socket.on('coding event', function (data) {
             const queueEvent = []
             queueEvent.push(data)
-            
-            
-            
             const lastOne = queueEvent.splice(queueEvent.length - 1, 1)
             console.log (lastOne[0].code)
-
-
-            // console.log('in EXPRESS coding event')
-            // console.log(data)
             socket.broadcast.to(data.room).emit('receive code', { code: lastOne[0].code});
         })
 

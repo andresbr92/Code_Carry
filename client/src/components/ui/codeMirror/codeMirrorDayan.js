@@ -25,6 +25,7 @@ import 'codemirror/mode/php/php.js'
 import 'codemirror/mode/erlang/erlang.js'
 import 'codemirror/mode/coffeescript/coffeescript.js'
 import 'codemirror/mode/crystal/crystal.js'
+import QuestionService from './../../../service/questionService'
 
 const io = require('socket.io-client')
 var socket = io.connect('http://localhost:5000');
@@ -62,15 +63,27 @@ class Room extends React.Component {
             console.log('user left room')
             return this.removeUser(user)
         })
+        this.QuestionService = new QuestionService()
     }
     componentDidMount() { //lifecycle method on our Room component to send a message to our socket connection that a new client is subscribing to the channel associated with this particular room.
-
         const user = this.props.loggedInUser.username
         sessionStorage.setItem('currentUser', user)
         const users = [...this.state.users, this.props.loggedInUser.username]
         socket.emit('room', { room: this.props.match.params.video_id, user: user });
         this.setState({ users: users })
         
+        
+    }
+
+    updateCodeQuestion = () => { 
+        
+        this.QuestionService
+            .getChatQuestion(this.props.match.params.video_id)
+            .then(response => {
+               
+                 this.setState({ code: response.data[0].code })
+            })
+
     }
 
     componentWillUnmount() {
@@ -78,7 +91,7 @@ class Room extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) { //deprecado debe cambiarse
-        console.log (nextProps, '<=========================')
+
         const user = nextProps.loggedInUser.username //nextProps.currentUser
         const users = [...this.state.users, user]
         socket.emit('room', { room: nextProps.video_id, user: user });
@@ -125,13 +138,19 @@ class Room extends React.Component {
 
     render() {
         const options = {
+            maxHighlightLength:400,
             lineNumbers: true,
             mode: this.state.mode,
-            theme: this.state.theme
+            theme: this.state.theme,
+            autocorrect:true
+            
         };
         return (
             <div>
+                <Button onClick={this.updateCodeQuestion} className="btn btn-dark btn-md">Paste code from question</Button>
                 <CodeMirror
+                    
+                    
                     value={this.state.code}
                     options={options}
                     // onBeforeChange={(editor, data, code) => {
@@ -139,7 +158,7 @@ class Room extends React.Component {
                     // }}
                     onChange={
                         (editor, data, value) => {
-                            console.log ('me ejecuto cuando cambia el value')
+                            console.log(this.state.users.length)
                             this.codeIsHappening(value)
                         }
                     }
