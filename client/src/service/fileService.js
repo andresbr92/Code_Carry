@@ -11,4 +11,4 @@
 
 //     handleUpload = theFile => this.service.post('/upload', theFile)
 //     TODO
-}
+//}

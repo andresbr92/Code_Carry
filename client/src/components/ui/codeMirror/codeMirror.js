@@ -5,11 +5,13 @@ import 'codemirror/lib/codemirror.css';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Modal from 'react-bootstrap/Modal'///////////////////////
 import 'codemirror/theme/midnight.css';
 
 import 'codemirror/mode/javascript/javascript.js'
 
 import QuestionService from '../../../service/questionService'
+import Rating from './../../profile/rating-form'
 
 
 const io = require('socket.io-client')
@@ -26,8 +28,14 @@ class Room extends React.Component {
             mode: 'javascript',
             theme: 'midnight',
             users: [],
+            questionOwner:'',
             currentlyTyping: null,
+            showModal: false/////////////////////////
         }
+
+       
+
+
         socket.on('receive code', (payload) => {
             console.log('receive code')
             return this.updateCodeInState(payload)
@@ -56,7 +64,13 @@ class Room extends React.Component {
         const users = [...this.state.users, this.props.loggedInUser.username]
         socket.emit('room', { room: this.props.match.params.video_id, user: user });
         this.setState({ users: users })
-
+        this.QuestionService
+            .getChatQuestion(this.props.match.params.video_id)
+            .then(response => {
+                console.log(response)
+                this.setState({ questionOwner: response.data[0].userOwner })
+            })
+            .catch(err => console.log(err))
 
     }
 
@@ -68,7 +82,7 @@ class Room extends React.Component {
 
                 this.setState({ code: response.data[0].code })
             })
-
+            .catch(err => console.log(err))
     }
 
     componentWillUnmount() {
@@ -124,6 +138,14 @@ class Room extends React.Component {
         socket.emit('clear code', { code: '', room: this.props.match.params.video_id })
     }
 
+
+    handleModal = status => this.setState({ showModal: status })///////////////////
+
+    handleQuestionSubmit = () => {////////////////////////
+        this.handleModal(false)
+        this.updateQuestionsList()/////////////////////////
+    }
+
     render() {
         const options = {
             lineNumbers: true,
@@ -132,8 +154,10 @@ class Room extends React.Component {
 
 
         };
+
         return (
             <>
+
                 <Row>
                     <Col md={8}>
                         <div className="screen-codemirror">
@@ -156,10 +180,17 @@ class Room extends React.Component {
                         <Row></Row>
                         <div className='screen-misc'>
                             <Button onClick={this.updateCodeQuestion} className="botton green">Paste Question Code</Button>
-                            <Button  className="botton green ml-5">Cerrar Pregunta</Button>
+
+                           {this.state.questionOwner===this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Cerrar pregunta</Button>}
                         </div>
                     </Col>
                 </Row>
+                {/* /////////////////////////////////////// */}
+                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                    <Modal.Body>
+                        <Rating handleQuestionSubmit={this.handleQuestionSubmit} loggedInUser={this.props.loggedInUser} handleModal={this.handleModal} users={this.state.users}  {...this.props} />
+                    </Modal.Body>
+                </Modal>
             </>
         )
     }

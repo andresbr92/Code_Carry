@@ -3,6 +3,7 @@ const router = express.Router()
 
 const User = require('../../models/user.model')
 const Question = require('../../models/question.model')
+const { find } = require('../../models/user.model')
 
 // Endpoints
 
@@ -46,6 +47,13 @@ router.post('/question/new', (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 })
+router.post('/helper/:searchName',(req,res,next) => {
 
+    User
+    .findOneAndUpdate({ "username": req.params.searchName },{ $push: { rating: req.body.rating ,comments:req.body.comments}})
+    .then(response => res.json(response))
+    .catch(err => next(err))
+
+})
 
 module.exports = router
