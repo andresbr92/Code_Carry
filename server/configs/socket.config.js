@@ -26,14 +26,18 @@ module.exports = (io) => {
         socket.on('coding event', function (data) {
             const queueEvent = []
             queueEvent.push(data)
-            const lastOne = queueEvent.splice(queueEvent.length - 1, 1)
-            console.log (lastOne[0].code)
-            socket.broadcast.to(data.room).emit('receive code', { code: lastOne[0].code});
+            const lastOne = queueEvent.shift(queueEvent.length)
+            console.log (lastOne)
+            socket.broadcast.to(data.room).emit('receive code', { code: lastOne.code});
         })
 
         socket.on('send users and code', function (data) {
             socket.broadcast.to(data.room).emit('receive users and code', data)
         })
+        socket.on('clear code', function(data)  { 
+            console.log(data,'soy CLEAR CODE')
+            socket.broadcast.to(data.room).emit('receive code', {code:data.code})
+        } )
     });
 
     

@@ -89,3 +89,21 @@ width: 45%;
   font-size: 25px;
   font-weight: 100; 
 }
+.CodeMirror {
+  border: 1px solid #eee;
+  
+}
+.screen-codemirror {
+  
+  margin: 15px 30px;
+
+}
+.screen-misc {
+  margin-top: 15px;
+}
+.green {
+  color: #000000;
+}
+.react-codemirror2 {
+  height: 85vh;
+}
