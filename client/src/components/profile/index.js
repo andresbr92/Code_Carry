@@ -64,10 +64,25 @@ class Profile extends Component {
         this.setState({ notViewedNotification: includeSkill })
     }
 
+    prestige = (allPuntuation) => {
+
+        let result=[]
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        result = allPuntuation.reduce(reducer)
+       return Math.round(result/allPuntuation.length)
+
+    }
+
+    // commentRating = () => {
+    //     this.state.user[0].rating.map(elm => {
+
+    //     })
+
+
+    // }
+
 
     render() {
-
-
 
         return (
 
@@ -82,12 +97,14 @@ class Profile extends Component {
                         <Row>
                         
                         <Col md={2}>
-                        <h4 className="text-white mt-5 mr-3 ">Hablidades<i class="fa fa-tags ml-2" aria-hidden="true"></i><hr className="hr-home"/>{this.state.user[0].skill.map((elm, idx) => <p key={idx} >{elm}</p>)}</h4>
+                        <h3 className="mb-5"><i className="fa fa-trophy mr-2 trofeo" aria-hidden="true"></i>Prestigio: {this.state.user[0].rating.length ? this.prestige(this.state.user[0].rating):0}/5</h3>
+                           <h4 className="text-white mt-5 mr-3 tex-center">Habilidades<i class="fa fa-tags ml-2 mt-2" aria-hidden="true"></i><hr className="hr-home"/>{this.state.user[0].skill.map((elm, idx) => <p key={idx} >{elm}</p>)}</h4>
+                           
                         </Col>
                             <Col md={6}>
-                                <img src={this.state.user[0].imageUrl} className="mr-3"></img>
+                                <img src={this.state.user[0].imageUrl} className="mr-3 img-profile"></img>
                                 <br />
-                                <h3 className="mb-5">Email: {this.state.user[0].email}</h3>
+                                <h5 className="mb-5 mt-5 text-white">Email: {this.state.user[0].email}</h5>
                                 <Link className="botton m-5" to={`/profile/edit/${this.state.user[0]._id}`} ><span>Editar perfil <i class="fa fa-wrench ml-2" aria-hidden="true"></i></span></Link>
                             </Col>
 
@@ -100,7 +117,7 @@ class Profile extends Component {
                                             </Accordion.Toggle>
                                         </Card.Header>
                                         <Accordion.Collapse eventKey="0">
-                                            <Card.Body>  <h6>{this.state.user[1].map((elm) => <> <Link key={elm._id} to={`/question/details/${elm._id}`}> {elm.tryHelp ? <p><i className="fa fa-bell red" aria-hidden="true"></i>Título :{elm.title} </p> : <p >Título :{elm.title} </p>} </Link><Button className="mb-3" onClick={() => this.removeQuestionProfile(elm._id)}>ELiminar<i className="fa fa-times ml-2" aria-hidden="true"></i></Button></>)}</h6> </Card.Body>
+                                            <Card.Body>  <h6>{this.state.user[1].map((elm) => <> <Link key={elm._id} to={`/question/details/${elm._id}`}> {elm.tryHelp ? <p><i className="fa fa-bell red ml-2" aria-hidden="true"></i>Título :{elm.title} </p> : <p >{elm.title} </p>} </Link><Button className="mb-3 text-center bg-danger rounded-circle" onClick={() => this.removeQuestionProfile(elm._id)}><i className="fa fa-times remove-button" aria-hidden="true"></i></Button></>)}</h6></Card.Body>
                                         </Accordion.Collapse>
                                     </Card>
                                 </Accordion>
@@ -109,7 +126,7 @@ class Profile extends Component {
                                     <Card>
                                         <Card.Header>
                                             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                                {this.state.notViewedNotification ? <h6>TIENES <span>{this.state.notViewedNotification.length} </span> NOTIFICACIONES NUEVAS <i className="fa fa-bell ml-2" aria-hidden="true"></i></h6> : <h5>NO TIENES NOTIFICAIONES</h5>}
+                                                {this.state.notViewedNotification ? <h6>TIENES <span>{this.state.notViewedNotification.length} </span> NOTIFICACIONES NUEVAS <i className="fa fa-bell-o" aria-hidden="true"></i></h6> : <h5>NO TIENES NOTIFICAIONES</h5>}
                                                 <Accordion.Collapse eventKey="0">
                                                     <Card.Body className="card">  {this.state.notViewedNotification && this.state.notViewedNotification.map((elm) => <Link key={elm._id} to={`/question/details/${elm._id}`} className="link-profile"> {elm.tryHelp ? <p><i class="fa fa-bell red" aria-hidden="true"></i>Título :{elm.title} </p> : <p >Título :{elm.title} </p>} <hr /> </Link>)}  </Card.Body>
                                                 </Accordion.Collapse>
@@ -123,13 +140,12 @@ class Profile extends Component {
                                     <Col md={4}>
                                     <Card className="mt-5">
                                         <Card.Header><h5>Comentario de {elm.username}</h5><hr />
-                                                    <Card.Body><h6>{elm.theComment}</h6></Card.Body>
+                                                    <Card.Body><h6>{elm.theComment}</h6><hr/></Card.Body>
+
                                         </Card.Header>
                                     </Card>
                                     </Col>)
                                  : null }
-                          
-                               
                         </Row>
                     </Container>
                 </>

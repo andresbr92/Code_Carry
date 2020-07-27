@@ -159,3 +159,18 @@ img {
 .logo-footer{
   width: 80px;
 }
+
+.remove-button{
+ width: 15px;
+ height: 15px;
+}
+
+.trofeo{
+  color: gold;
+}
+
+.img-profile{
+  width: 300px;
+  height:300px;
+}
+

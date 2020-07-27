@@ -75,7 +75,7 @@ class EditForm extends Component {
         })
     }
     handleFormSubmit = e => {
-       alert('frfrfrfr')
+      
         e.preventDefault()
         this.ProfileService
             .editUser(this.props.match.params.user_id, {
@@ -120,15 +120,16 @@ class EditForm extends Component {
                         </Form.Group>
                          
                      <Form.Group>
-                        <Form.Label>Imagen (archivo)</Form.Label>
+                        <Form.Label>Imagen (archivo)<i className="fa fa-file-image-o ml-2" aria-hidden="true"></i></Form.Label>
                         <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload}/>
                     </Form.Group>
                  
                         <Form.Group>
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label>Email<i className="fa fa-envelope-o ml-2" aria-hidden="true"></i></Form.Label>
                             <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="email" />
                         </Form.Group>
                         <Form.Group>
+                        <Form.Label>Tus skills<i className="fa fa-tasks ml-2 mr-4" aria-hidden="true"></i></Form.Label>
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('javascript')} value='javascript' inline label="javascript" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('java')} value='java' inline label="java" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('react')} value='react' inline label="react" name="skill" type='checkbox' />
