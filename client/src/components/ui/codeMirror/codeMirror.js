@@ -6,16 +6,17 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import 'codemirror/theme/midnight.css';
-
 import 'codemirror/mode/javascript/javascript.js'
-
 import QuestionService from '../../../service/questionService'
+import VideoChat from './../videoChat/videoChat'
+import ProfileService from './../../../service/profileService'
+
 
 
 const io = require('socket.io-client')
 var socket = io.connect('http://localhost:5000');
 socket.on('news', function (data) {
-    console.log(data);
+
 });
 class Room extends React.Component {
     constructor(props) {
@@ -29,26 +30,27 @@ class Room extends React.Component {
             currentlyTyping: null,
         }
         socket.on('receive code', (payload) => {
-            console.log('receive code')
+
             return this.updateCodeInState(payload)
         });
         socket.on('new user join', (users) => {
-            console.log('join user')
+
             return this.joinUser(users)
         })
         socket.on('load users and code', () => {
-            console.log('load user and code')
+
             return this.sendUsersAndCode()
         })
         socket.on('receive users and code', (payload) => {
-            console.log('recive users and code')
+
             return this.updateUsersAndCodeInState(payload)
         })
         socket.on('user left room', (user) => {
-            console.log('user left room')
+
             return this.removeUser(user)
         })
         this.QuestionService = new QuestionService()
+        this.ProfileService = new ProfileService()
     }
     componentDidMount() { //lifecycle method on our Room component to send a message to our socket connection that a new client is subscribing to the channel associated with this particular room.
         const user = this.props.loggedInUser.username
@@ -56,9 +58,13 @@ class Room extends React.Component {
         const users = [...this.state.users, this.props.loggedInUser.username]
         socket.emit('room', { room: this.props.match.params.video_id, user: user });
         this.setState({ users: users })
+        
+        
+
 
 
     }
+    
 
     updateCodeQuestion = () => {
 
@@ -91,17 +97,17 @@ class Room extends React.Component {
         const indexOfUserToDelete = this.state.users.findIndex(Olduser => { return Olduser == user.user })
         newUsers.splice(indexOfUserToDelete, 1);
         this.setState({ users: newUsers })
-        console.log('removeUser', user)
+
     }
     joinUser(user) {
         const combinedUsers = [...this.state.users, user]
         const newUsers = Array.from(new Set(combinedUsers));
         const cleanUsers = newUsers.filter(user => { return user.length > 1 })
         this.setState({ users: cleanUsers })
-        console.log('joinUser', user)
+
     }
     updateCodeInState(payload) { // whenever there is a change to the code miroors text area, copy of Room's state, causing our component to re-render, passing that new value of this.state.code into the Codemirror component under the prop of value.
-        console.log('soy updateCodeInstate')
+
         this.setState({
             code: payload.code
         });
@@ -109,14 +115,14 @@ class Room extends React.Component {
 
 
     updateUsersAndCodeInState(payload) {
-        console.log(payload, 'soy UPDATEuserANDcodeInsState')
+
         const combinedUsers = this.state.users.concat(payload.users)
         const newUsers = Array.from(new Set(combinedUsers));
         const cleanUsers = newUsers.filter(user => { return user.length > 1 })
         this.setState({ users: cleanUsers, code: payload.code })
     }
     codeIsHappening(newCode) {
-        console.log('soy codeIsHappening')
+
 
         socket.emit('coding event', { code: newCode, room: this.props.match.params.video_id, user: this.props.loggedInUser.username })
     }
@@ -144,7 +150,7 @@ class Room extends React.Component {
                                 options={options}
                                 onChange={
                                     (editor, data, value) => {
-                                        console.log(this.state.users.length)
+
                                         this.codeIsHappening(value)
                                     }
                                 }
@@ -156,7 +162,10 @@ class Room extends React.Component {
                         <Row></Row>
                         <div className='screen-misc'>
                             <Button onClick={this.updateCodeQuestion} className="botton green">Paste Question Code</Button>
-                            <Button  className="botton green ml-5">Cerrar Pregunta</Button>
+                            <Button className="botton green ml-5">Cerrar Pregunta</Button>
+
+
+                            <VideoChat loggedInUser={this.state.loggedInUser} {...this.props} usersChat={this.state.users} />
                         </div>
                     </Col>
                 </Row>

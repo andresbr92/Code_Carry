@@ -15,5 +15,6 @@ export default class ProfileService {
     editUser = (id, username) => this.service.post(`/edit/${id}`, username)
     makeQuestion = question => this.service.post('/question/new', question)
     findUserQuestion = user_id => this.service.get()
+    getUserByName = username => this.service.get(`/getdataforchat/${username}`)
     
 }

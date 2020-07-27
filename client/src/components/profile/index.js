@@ -35,7 +35,6 @@ class Profile extends Component {
         this.ProfileService
             .getTheUser(user_id)
             .then(response => {
-                console.log(response.data)
                 this.setState({ user: response.data }, () => {
                     this.notifications()
                 

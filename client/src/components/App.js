@@ -40,7 +40,7 @@ class App extends Component {
   
   handleSearch = inputSearch => this.setState({ filteredSearch: inputSearch })
    // const filtered = this.state.filteredSearch.filter((elm) => elm.name.toLowerCase().includes(inputSearch))
-  setTheUser = user => this.setState({ loggedInUser: user }, () => console.log("El estado de App ha cambiado:", this.state))
+  setTheUser = user => this.setState({ loggedInUser: user })
 
   fetchUser = () => {
     this.AuthService

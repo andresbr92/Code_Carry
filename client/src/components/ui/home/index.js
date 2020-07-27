@@ -31,7 +31,6 @@ class Home extends Component {
         this.QuestionService
             .allQuestions()
             .then(response => {
-                console.log (response)
                 this.setState({ questions: response.data })
             })
             .catch(err => console.log(err))
