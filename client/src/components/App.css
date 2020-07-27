@@ -1,7 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Dosis&family=Montserrat:wght@500&display=swap');
-
-
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -10,54 +7,74 @@ body {
 
 .navigation {
   background-color: #dee2e6;
+  color:black;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
+  color:white;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   margin: 30px 0
 }
-.CodeMirror { min-height: 100% }
-
-a, a:hover {
-  font-family: 'Dosis', sans-serif;
- font-size: 1.3em;
-  color: black;
+h4{
   text-decoration: none;
 }
-p {
-  color: whitesmoke;
+
+.CodeMirror {
+  min-height: 100%
+}
+
+p{
+  text-decoration: none;
+}
+
+a{
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.3em;
+  color:rgb(105, 149, 243);
+  text-decoration: none;
+  padding: 20px;
+}
+
+a:hover {
+  
+  text-decoration: none;
 }
 
 img {
   width: 100%;
 }
-.logo{
+
+.logo {
   width: 35px;
-  
 }
 
-.titular{
+.titular {
   text-align: center;
   color: rgb(255, 255, 255);
   margin: 30px 0;
-
 }
 
-.hr-home{
-margin-bottom: 50px;
-background-color: rgb(255, 255, 255);
-width: 35%;
+.hr-home {
+  margin-bottom: 50px;
+  background-color: rgb(255, 255, 255);
+  width: 35%;
 }
-.hr-secondary{
+
+.hr-secondary {
   margin-bottom: 30px;
-background-color: rgb(255, 255, 255);
-width: 45%;
+  background-color: rgb(255, 255, 255);
+  width: 45%;
+  text-align: center;
 }
 
-.footer{
+.footer {
   margin-top: 500px;
+  color:rgb(105, 149, 243);
 }
-/* ////////////////////////////// */
+
 .start {
   text-align: center;
   margin: 20px 0;
@@ -67,43 +84,78 @@ width: 45%;
   align-items: center;
   margin-left: 170px;
 }
+
 .botton {
   width: 180px;
   height: 60px;
   cursor: pointer;
   background: transparent;
-  border: 1px solid #000000;
+  border: 1px solid white;
   outline: none;
   transition: 1s ease-in-out;
+  padding: 10px;
 }
 
 .botton:hover {
-  transition: 1s ease-in-out;
+  transition: .5s ease-in-out;
   background: gray;
 }
-.botton:hover svg {
-  stroke-dashoffset: -480;
-}
+
 .botton span {
   color: white;
-  font-size: 25px;
-  font-weight: 100; 
+  font-size: 20px;
+  font-weight: 100;
 }
+
 .CodeMirror {
   border: 1px solid #eee;
-  
 }
-.screen-codemirror {
-  
-  margin: 15px 30px;
 
+.screen-codemirror {
+  margin: 15px 30px;
 }
+
 .screen-misc {
   margin-top: 15px;
 }
-.green {
-  color: #000000;
+
+.red-chat:hover {
+  transition: .5s ease-in-out;
+  background: rgb(255, 60, 60);
 }
+
+.blue:hover {
+  transition: .5s ease-in-out;
+  background: rgb(105, 138, 245);
+  color: black
+}
+
 .react-codemirror2 {
   height: 85vh;
+}
+
+.img-form{
+  width: 80px;
+}
+
+.icons{
+  width: 40px;
+}
+
+.red{
+  color:red;
+  margin-right: 10px;
+}
+.imgNavbar{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.logoBlanco{
+  width: 60px;
+}
+
+.logo-footer{
+  width: 80px;
 }

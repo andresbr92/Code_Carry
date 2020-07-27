@@ -34,7 +34,10 @@ class Rating extends Component {
             this.ProfileService
             .findHelperUser(searchName,{
                 rating:this.state.rating,
-                comments:this.state.comments})
+                comments:{
+                    theComment:this.state.comments,
+                    username:this.props.loggedInUser.username 
+                }})
             .then(()=> this.props.handleModal(false))
             .catch(err => console.log(err))
              
@@ -44,13 +47,15 @@ class Rating extends Component {
     handleChecks = (e) => e.target.checked ? this.setState({ rating: e.target.value }) : this.setState({ rating: !e.target.value })
     render() {
         return (
+
             <Container>
-                <h3>Puntúa la respuesta recibida de { this.props.users[0] === this.props.loggedInUser.username ? this.props.users[1] : this.props.users[0]}</h3>
+            <img src="./../../../images/Logo.PNG" className="img-form mb-3" />
+                <h4>Puntúa la respuesta recibida de { this.props.users[0] === this.props.loggedInUser.username ? this.props.users[1] : this.props.users[0]}</h4>
                 <hr />
                 <Form onSubmit={this.handleFormSubmit}>
     
                     <Form.Group>
-                        <Form.Label>Puntúa del 1 al 5</Form.Label>
+                        <Form.Label>Puntuaciones del 1 al 5</Form.Label>
                         <hr />
                         <Form.Check onChange={this.handleChecks} checked={this.checkPuntuation(1)} value = '1' inline label="1" name="rating" type='checkbox' />
                         <Form.Check onChange={this.handleChecks} checked={this.checkPuntuation(2)} value = '2' inline label="2" name="rating" type='checkbox' />
@@ -60,7 +65,7 @@ class Rating extends Component {
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Comentario</Form.Label>
-                        <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.comments} name="comments" type="text" placeholder={`${this.props.loggedInUser.username}`}/>
+                        <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.comments} name="comments" type="text" placeholder='Escribe tu comentario'/>
                     </Form.Group>
                    
                     <Button  classname='botton'variant="dark" type="submit">Mandar puntuación</Button>

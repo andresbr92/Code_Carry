@@ -2,41 +2,44 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
+
+
 const FooterPagePro = () => {
   return (
     <div className="footer">
-    <MDBFooter color="unique-color-dark" className="page-footer font-small pt-0 mt-5 text-info">
-      <div style={{ backgroundColor: "#ffff" }}>
+    <MDBFooter color="unique-color-dark" className="page-footer font-small pt-0 mt-5">
+      <div style={{ backgroundColor: "#dee2e6" }}>
         <MDBContainer fluid className="text-center text-md-left">
           <MDBRow className="py-4 d-flex align-items-center">
             <MDBCol md="6" lg="5" className="text-center text-md-left mb-4 mb-md-0">
-              <h6 className="mb-0 text-info" >
+              <h6 className="mb-0" >
                 CODE_CARRY
               </h6>
             </MDBCol>
             <MDBCol md="6" lg="7" className="text-center text-md-right">
-              <Link className="fb-ic ml-0">
-                <i className="fab fa-facebook-f white-text mr-lg-4">Holaaaaaa </i>
+              <Link>
+              <i class="fab fa-mdb" />
               </Link>
-              <Link className="tw-ic">
-                <i className="fab fa-twitter white-text mr-lg-4"> H</i>
+              <Link>
+                <i className="fa fa-twitter" aria-hidden="true"/>
               </Link>
-              <a className="gplus-ic">
-                <i className="fab fa-google-plus-g white-text mr-lg-4">O </i>
-              </a>
-              <a className="li-ic">
-                <i className="fab fa-linkedin-in white-text mr-lg-4"> L</i>
-              </a>
-              <a className="ins-ic">
-                <i className="fab fa-instagram white-text mr-lg-4">A </i>
-              </a>
+              <Link>
+              <i class="fa fa-linkedin" aria-hidden="true"/>
+                </Link>
+                <Link>
+                <i className="fa fa-instagram" aria-hidden="true"/>
+                </Link>
+                <Link>
+                <i class="fa fa-google" aria-hidden="true"></i>
+                </Link>
+               
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </div>
       <MDBContainer className="mt-5 mb-4 text-center text-md-left text-white">
         <MDBRow className="mt-3">
-          <MDBCol md="3" lg="4" xl="3" className="mb-4">
+          <MDBCol md="3" lg="3" xl="3" className="mb-4">
             <h6 className="text-uppercase font-weight-bold text-white">
               <strong>CODE_CARRY S.L.</strong>
             </h6>
@@ -63,7 +66,7 @@ const FooterPagePro = () => {
             <Link to="/auth/login">MDBootstrap</Link>
             </p>
           </MDBCol>
-          <MDBCol md="3" lg="2" xl="2" className="mb-4">
+          <MDBCol md="2" lg="2" xl="2" className="mb-4">
             <h6 className="text-uppercase font-weight-bold text-white">
               <strong>Nosotros</strong>
             </h6>
@@ -78,7 +81,8 @@ const FooterPagePro = () => {
             <Link to="/auth/login">MDBootstrap</Link>
             </p>
           </MDBCol>
-          <MDBCol md="4" lg="3" xl="3" className="mb-4">
+
+          <MDBCol md="3" lg="3" xl="3" className="mb-4">
             <h6 className="text-uppercase font-weight-bold text-white">
               <strong>Contacto</strong>
             </h6>
@@ -93,14 +97,19 @@ const FooterPagePro = () => {
               <i className="fa fa-phone mr-3" /> + 01 234 567 88
             </p>
             <p>
-              <i className="fa fa-print mr-3 text-info" /> + 01 234 567 89
+              <i className="fa fa-print mr-3" /> + 01 234 567 89
             </p>
+            </MDBCol>
+            <MDBCol md="2" lg="2" xl="2" className="mt-5  ">
+              <img src="./../../../../images/LogoBlanco.PNG" className="logo-footer" />
+            
+
           </MDBCol>
         </MDBRow>
       </MDBContainer>
       <div class="text-center py-3 text-white">
         <MDBContainer fluid>
-         Copyright: Barros & Moreno 
+         Design by Barros & Moreno 
         </MDBContainer>
       </div>
     </MDBFooter>

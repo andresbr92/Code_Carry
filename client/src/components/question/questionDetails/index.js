@@ -71,16 +71,16 @@ class QuestionDetails extends Component {
             !this.state.questionDetails ? <Spinner /> :
                 
 
-                <Container as="main">
+                <Container as="main" className="text-white">
 
-                    <h1>{this.state.questionDetails.title}</h1>
-
+                    <h1 className="text-center">{this.state.questionDetails.title}</h1>
+                    <hr className="hr-home" />
                     <Row>
                         <Col md={{ span: 5, offset: 1 }}>
-                            <p><b>Detalles: </b> {this.state.questionDetails.description} </p>
-                            <hr/>
+                            <p><b>Pregunta: </b> {this.state.questionDetails.description} </p>
+                            <hr className="hr-home" />
                             <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
-                            <hr/>
+                            
 
                         </Col>
                         <Col md={{ span: 4, offset: 1 }}>
@@ -93,11 +93,11 @@ class QuestionDetails extends Component {
                         </Col>
                     </Row>
 
-                    <Button onClick={this.props.history.goBack} className="btn btn-dark btn-md">Volver</Button>
+                    <Button onClick={this.props.history.goBack} className="botton">Volver</Button>
                     {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
-                    {this.props.loggedInUser && <Button className="btn btn-dark btn-md ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button>}
-                    <hr></hr>
-                    {this.state.questionDetails.tryHelp && <Link className="btn btn-danger btn-md" to={`/chat/${this.state.questionDetails.video_id}`} >IR AL CHAT</Link>}
+                    {this.props.loggedInUser && <Button className="botton ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button>}
+                    
+                    {this.state.questionDetails.tryHelp && <Link className="botton red-chat ml-5" to={`/chat/${this.state.questionDetails.video_id}`}><span>IR AL CHAT</span></Link>}
 
                 </Container>
 

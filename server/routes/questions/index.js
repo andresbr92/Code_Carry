@@ -19,15 +19,14 @@ router.get('/',(req,res,next) => {
 })
 
 router.post('/delete/:question_id',(req,res,next) => {
-   
     Questions
       .findByIdAndRemove(req.params.question_id)
       .then((response) => console.log(response))//////////////////////////////////Que poner aki
       .catch(error => next(error))
 
 })
+
 router.post('/tryHelp/:question_id', (req, res, next) => {
-    
     Questions
         .findByIdAndUpdate(req.params.question_id, {
             tryHelp: true,
@@ -37,8 +36,8 @@ router.post('/tryHelp/:question_id', (req, res, next) => {
         .catch(err =>  console.log (err))
 
 })
+
 router.get('/codemirror/getQuestion/:video_id', (req, res) => { 
-   
     Questions
         .find({ "video_id": req.params.video_id })
         .then(response => res.json(response))

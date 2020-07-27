@@ -157,7 +157,6 @@ class Room extends React.Component {
 
         return (
             <>
-
                 <Row>
                     <Col md={8}>
                         <div className="screen-codemirror">
@@ -173,19 +172,19 @@ class Room extends React.Component {
                                     }
                                 }
                             />
-                            <Button onClick={this.clearCode.bind(this)} className="col-lg-12">clear code</Button>
+                            <Button onClick={this.clearCode.bind(this)} className="col-lg-12"><i className="fa fa-recycle" aria-hidden="true"></i> Limpiar código</Button>
                         </div>
                     </Col>
                     <Col md={4}>
                         <Row></Row>
                         <div className='screen-misc'>
-                            <Button onClick={this.updateCodeQuestion} className="botton green">Paste Question Code</Button>
+                            <Button onClick={this.updateCodeQuestion} className="botton"> Pega aquí tu código <i className="fa fa-code" aria-hidden="true"></i></Button>
 
-                           {this.state.questionOwner===this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Cerrar pregunta</Button>}
+                           {this.state.questionOwner===this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} className="botton blue ml-5">Cerrar pregunta <br/><i className="fa fa-handshake-o" aria-hidden="true"></i></Button>}
                         </div>
                     </Col>
                 </Row>
-                {/* /////////////////////////////////////// */}
+   
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
                         <Rating handleQuestionSubmit={this.handleQuestionSubmit} loggedInUser={this.props.loggedInUser} handleModal={this.handleModal} users={this.state.users}  {...this.props} />

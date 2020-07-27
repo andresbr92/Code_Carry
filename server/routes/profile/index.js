@@ -28,16 +28,17 @@ router.get('/edit/:user_id', (req, res, next) => {
 })
 
 router.post('/edit/:user_id', (req, res, next) => {
+    console.log(req.body,'<----------------------------')
     User
     .findByIdAndUpdate(req.params.user_id, req.body)
-    .then(res => console.log(res))
+    .then(response => res.json(response))
     .catch(err => next(err))
     
     
 })
 router.post('/edit/delete/:user_id', (req, res, next) => {
     
-    res.send('estas eliminando tu perfil')
+    res.send('estas eliminando tu perfil')///////////////////////////////////////
     
 })
 router.post('/question/new', (req, res, next) => {
@@ -48,9 +49,8 @@ router.post('/question/new', (req, res, next) => {
         .catch(err => next(err))
 })
 router.post('/helper/:searchName',(req,res,next) => {
-
     User
-    .findOneAndUpdate({ "username": req.params.searchName },{ $push: { rating: req.body.rating ,comments:req.body.comments}})
+    .findOneAndUpdate({ "username": req.params.searchName },{ $push: { rating: req.body.rating ,comments:req.body.comments,}})
     .then(response => res.json(response))
     .catch(err => next(err))
 

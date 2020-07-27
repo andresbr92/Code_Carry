@@ -41,9 +41,10 @@ const userSchema = new Schema({
         type:[Number],
         enum:[1,2,3,4,5],
     },
-    comments: {
-        type:[String]
-    }
+    comments: [{
+       username:String,
+       theComment:String
+    }]
 
 
 
