@@ -5,12 +5,14 @@ import 'codemirror/lib/codemirror.css';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Modal from 'react-bootstrap/Modal'///////////////////////
 import 'codemirror/theme/midnight.css';
 import 'codemirror/mode/javascript/javascript.js'
 import QuestionService from '../../../service/questionService'
 import VideoChat from './../videoChat/videoChat'
 import ProfileService from './../../../service/profileService'
 
+import Rating from './../../profile/rating-form'
 
 
 const io = require('socket.io-client')
@@ -27,8 +29,14 @@ class Room extends React.Component {
             mode: 'javascript',
             theme: 'midnight',
             users: [],
+            questionOwner:'',
             currentlyTyping: null,
+            showModal: false/////////////////////////
         }
+
+       
+
+
         socket.on('receive code', (payload) => {
 
             return this.updateCodeInState(payload)
@@ -62,6 +70,13 @@ class Room extends React.Component {
         
 
 
+        this.QuestionService
+            .getChatQuestion(this.props.match.params.video_id)
+            .then(response => {
+                console.log(response)
+                this.setState({ questionOwner: response.data[0].userOwner })
+            })
+            .catch(err => console.log(err))
 
     }
     
@@ -74,7 +89,7 @@ class Room extends React.Component {
 
                 this.setState({ code: response.data[0].code })
             })
-
+            .catch(err => console.log(err))
     }
 
     componentWillUnmount() {
@@ -130,6 +145,14 @@ class Room extends React.Component {
         socket.emit('clear code', { code: '', room: this.props.match.params.video_id })
     }
 
+
+    handleModal = status => this.setState({ showModal: status })///////////////////
+
+    handleQuestionSubmit = () => {////////////////////////
+        this.handleModal(false)
+        this.updateQuestionsList()/////////////////////////
+    }
+
     render() {
         const options = {
             lineNumbers: true,
@@ -138,6 +161,7 @@ class Room extends React.Component {
 
 
         };
+
         return (
             <>
                 <Row>
@@ -155,20 +179,26 @@ class Room extends React.Component {
                                     }
                                 }
                             />
-                            <Button onClick={this.clearCode.bind(this)} className="col-lg-12">clear code</Button>
+                            <Button onClick={this.clearCode.bind(this)} className="col-lg-12"><i className="fa fa-recycle" aria-hidden="true"></i> Limpiar código</Button>
                         </div>
                     </Col>
                     <Col md={4}>
                         <Row></Row>
                         <div className='screen-misc'>
-                            <Button onClick={this.updateCodeQuestion} className="botton green">Paste Question Code</Button>
-                            <Button className="botton green ml-5">Cerrar Pregunta</Button>
-
-
+                            
                             <VideoChat loggedInUser={this.state.loggedInUser} {...this.props} usersChat={this.state.users} />
+                            <Button onClick={this.updateCodeQuestion} className="botton"> Pega aquí tu código <i className="fa fa-code" aria-hidden="true"></i></Button>
+
+                           {this.state.questionOwner===this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} className="botton blue ml-5">Cerrar pregunta <br/><i className="fa fa-handshake-o" aria-hidden="true"></i></Button>}
                         </div>
                     </Col>
                 </Row>
+   
+                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                    <Modal.Body>
+                        <Rating handleQuestionSubmit={this.handleQuestionSubmit} loggedInUser={this.props.loggedInUser} handleModal={this.handleModal} users={this.state.users}  {...this.props} />
+                    </Modal.Body>
+                </Modal>
             </>
         )
     }

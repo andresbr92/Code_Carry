@@ -48,7 +48,7 @@ class Navigation extends Component {
                         <Nav className="ml-auto">
                             <Form inline className="mr-5">
                                 <FormControl onChange={this.handleInputChange} name='inputSearch' value={this.state.inputSearch} type="text" placeholder="Buscar" className="mr-sm-2" />
-                                <Button variant="outline-secondary">Buscar</Button>
+                                <Button variant="outline-secondary"><i className="fa fa-search mr-2" aria-hidden="true"></i>Buscar</Button>
                             </Form>
                             <Nav.Link as="span">
                                 <NavLink to="/" exact activeStyle={{ color: 'black' }} className="mr-5">Inicio</NavLink>
@@ -59,7 +59,7 @@ class Navigation extends Component {
                                 (
                                     <>
                                         <Nav.Link as="span">
-                                            <NavLink to='/' onClick={this.logout} activeStyle={{ color: 'black' }} className="mr-5">Cerrar Sesión</NavLink>
+                                            <NavLink to='/' onClick={this.logout} className="mr-5">Cerrar Sesión</NavLink>
                                         </Nav.Link>
                                     </>
                                 ) : (
@@ -74,7 +74,7 @@ class Navigation extends Component {
                                 )
                             }
                             <Nav.Link as="span">
-                                <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'black' }} className="mr-5">Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</NavLink>
+                                <NavLink to={this.props.loggedInUser ? `/profile/${this.props.loggedInUser._id}` : `/auth/login`} activeStyle={{ color: 'black' }} className="mr-5">Hola, {this.props.loggedInUser ? <><span>{this.props.loggedInUser.username}</span><img src={this.props.loggedInUser.imageUrl} className="imgNavbar ml-3"/></> : <><span>invitado</span><i className="fa fa-user-circle ml-2" aria-hidden="true"></i></>}</NavLink>
                             </Nav.Link>
                         </Nav>
 

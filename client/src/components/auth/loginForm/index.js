@@ -32,7 +32,7 @@ class LoginForm extends Component {
                 this.props.setTheUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log(err.response.data.message))   // Error handling yay!
+            .catch(err => console.log(err))   // Error handling yay!
     }
 
     render() {

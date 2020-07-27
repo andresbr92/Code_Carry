@@ -10,7 +10,7 @@ const QuestionCard = ({ _id, title, image_url }) => {
 
     return (
         <Col md={4}>
-            <Card className="questions-card">
+            <Card className="questions-card mb-5 bg-light">
                 <Card.Img variant="top" src={image_url} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>

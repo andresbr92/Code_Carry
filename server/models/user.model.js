@@ -36,7 +36,15 @@ const userSchema = new Schema({
     }],
     notifications: {
         viewed : Number
-    }
+    },
+    rating: {
+        type:[Number],
+        enum:[1,2,3,4,5],
+    },
+    comments: [{
+       username:String,
+       theComment:String
+    }]
 
 
 

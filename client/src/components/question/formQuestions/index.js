@@ -33,7 +33,9 @@ class NewQuestion extends Component {
         e.preventDefault()
         this.ProfileService
             .makeQuestion(this.state)
-            .then(()=> this.props.handleModal(false))
+            .then(()=> {
+                this.props.updateQuestionsList()
+                this.props.handleModal(false)})
             .catch(err => console.log(err))
              
     }
@@ -43,15 +45,16 @@ class NewQuestion extends Component {
     render() {
         return (
             <Container>
-                <h3>Nueva pregunta</h3>
-                <hr></hr>
+             <img src="./../../../images/Logo.PNG" className="img-form" />
+                <h4 className="text-center">Haz tu pregunta</h4>
+                <hr />
                 <Form onSubmit={this.handleFormSubmit}>
                     <Form.Group>
                         <Form.Label>Título</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.title} name="title" type="text" />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Pregunta sobre  </Form.Label>
+                        <Form.Label>Pregunta sobre:</Form.Label><br />
                         <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('javascript')} value='javascript' inline label="javascript" name="skill" type='checkbox' />
                         <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('java')} value='java' inline label="java" name="skill" type='checkbox' />
                         <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('react')} value='react' inline label="react" name="skill" type='checkbox' />

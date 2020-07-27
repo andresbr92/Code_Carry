@@ -3,6 +3,7 @@ const router = express.Router()
 
 const User = require('../../models/user.model')
 const Question = require('../../models/question.model')
+const { find } = require('../../models/user.model')
 
 // Endpoints
 
@@ -27,17 +28,18 @@ router.get('/edit/:user_id', (req, res, next) => {
 })
 
 router.post('/edit/:user_id', (req, res, next) => {
+    console.log(req.body,'<----------------------------')
     User
-        .findByIdAndUpdate(req.params.user_id, req.body)
-        .then(res => console.log(res))
-        .catch(err => next(err))
-
-
+    .findByIdAndUpdate(req.params.user_id, req.body)
+    .then(response => res.json(response))
+    .catch(err => next(err))
+    
+    
 })
 router.post('/edit/delete/:user_id', (req, res, next) => {
-
-    res.send('estas eliminando tu perfil')
-
+    
+    res.send('estas eliminando tu perfil')///////////////////////////////////////
+    
 })
 router.post('/question/new', (req, res, next) => {
 
@@ -52,6 +54,12 @@ router.get('/getdataforchat/:username', (req, res, next) => {
         .findOne({"username":req.params.username})
         .then(response => console.log(response))
 })
+router.post('/helper/:searchName',(req,res,next) => {
+    User
+    .findOneAndUpdate({ "username": req.params.searchName },{ $push: { rating: req.body.rating ,comments:req.body.comments,}})
+    .then(response => res.json(response))
+    .catch(err => next(err))
 
+})
 
 module.exports = router

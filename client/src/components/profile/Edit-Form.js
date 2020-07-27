@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProfileService from './../../service/profileService'
-//import FilesService from './../../service/fileService'
+import FilesService from './../../service/fileService'
 import Spinner from './../ui/spinner'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -22,8 +22,8 @@ class EditForm extends Component {
         }
 
         this.ProfileService = new ProfileService()
-        //this.FilesService = new FilesService()    // CLOUDINARYCONFIG 
-        // TODO
+        this.FilesService = new FilesService()    // CLOUDINARYCONFIG 
+       
     }
 
     componentDidMount = () => {
@@ -42,7 +42,7 @@ class EditForm extends Component {
 
                     username: response.data.username,
                     role: response.data.role,
-                   // image_url: response.data.image_url,//////////////////////////////////Ver
+                    imageUrl: response.data.imageUrl,
                     email: response.data.email,
                     skill: response.data.skill,
                     editing: false,
@@ -52,19 +52,20 @@ class EditForm extends Component {
             .catch(err => console.log(err))
     }
 
-    //  // CLOUDINARYCONFIG  
-    //  handleFileUpload = e => {
-    //     const uploadData = new FormData()
-    //     uploadData.append("imageUrl", e.target.files[0])
+     // CLOUDINARYCONFIG  
+     handleFileUpload = e => {
+        const uploadData = new FormData()
+        uploadData.append("imageUrl", e.target.files[0])
 
-    //     this.filesService.handleUpload(uploadData)
-    //         .then(response => {
-    //             console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
-    //             this.setState({ imageUrl: response.data.secure_url })
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-    // TODO
+        this.FilesService
+            .handleUpload(uploadData)
+            .then(response => {
+                console.log('Subida de archivo finalizada! La URL de Cloudinray es: ', response.data.secure_url)
+                this.setState({ imageUrl: response.data.secure_url })
+            })
+            .catch(err => console.log(err))
+    }
+  
 
 
     handleInputChange = e => {
@@ -74,6 +75,7 @@ class EditForm extends Component {
         })
     }
     handleFormSubmit = e => {
+      
         e.preventDefault()
         this.ProfileService
             .editUser(this.props.match.params.user_id, {
@@ -81,9 +83,12 @@ class EditForm extends Component {
                 role: this.state.role,
                 email: this.state.email,
                 skill: this.state.skill,
+                imageUrl:this.state.imageUrl
 
             })
-            .then(res => this.props.history.push(`/profile/${this.props.match.params.user_id}`))
+            .then(() => {
+                
+                return this.props.history.push(`/profile/${this.props.match.params.user_id}`)})
             .catch(err => console.log(err))
     }
     checkLanguage = language => this.state.skill.includes(language)
@@ -104,30 +109,37 @@ class EditForm extends Component {
 
         return (
             this.state.editing ? <Spinner /> :
-                <Container>
+                <Container className="text-white m-5">
+                <h1 className="text-center">Edición de tu perfil</h1>
+                <hr className="hr-home"/>
                     <Form onSubmit={this.handleFormSubmit}>
+                   
                         <Form.Group>
                             <Form.Label>Nombre</Form.Label>
                             <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
                         </Form.Group>
-                          {/* // CLOUDINARYCONFIG   */}
+                         
                      <Form.Group>
-                        <Form.Label>Imagen (archivo)</Form.Label>
-                        <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload} />
+                        <Form.Label>Imagen (archivo)<i className="fa fa-file-image-o ml-2" aria-hidden="true"></i></Form.Label>
+                        <Form.Control name="imageUrl" type="file" onChange={this.handleFileUpload}/>
                     </Form.Group>
                  
                         <Form.Group>
-                            <Form.Label>Email</Form.Label>
+                            <Form.Label>Email<i className="fa fa-envelope-o ml-2" aria-hidden="true"></i></Form.Label>
                             <Form.Control onChange={this.handleInputChange} value={this.state.email} name="email" type="email" />
                         </Form.Group>
                         <Form.Group>
+                        <Form.Label>Tus skills<i className="fa fa-tasks ml-2 mr-4" aria-hidden="true"></i></Form.Label>
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('javascript')} value='javascript' inline label="javascript" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('java')} value='java' inline label="java" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('react')} value='react' inline label="react" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('mongodb')} value='mongodb' inline label="mongodb" name="skill" type='checkbox' />
                             <Form.Check onChange={this.handleChecks} checked={this.checkLanguage('python')} value='python' inline label="python" name="skill" type='checkbox' />
                         </Form.Group>
-                        <Button onClick={this.props.history.goBack} variant="dark" type="submit">Submit</Button>
+                        <Button  type="input" className="botton blue mt-5">Editar</Button>
+                        <br />
+                        <Button onClick={this.props.history.goBack} className="botton mt-5">Volver</Button>
+                    
                     </Form>
 
 
