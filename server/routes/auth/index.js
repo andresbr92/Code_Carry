@@ -4,6 +4,7 @@ const passport = require("passport")
 
 const User = require("./../../models/user.model")
 const bcrypt = require("bcrypt")
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 
 
 
@@ -101,14 +102,14 @@ router.post('/login', (req, res, next) => {
 
 
 
-router.post('/logout', (req, res, next) => {
+router.post('/logout', ensureLoggedIn(), (req, res, next) => {
     // req.logout() is defined by passport
     req.logout();
     res.status(200).json({ message: 'Log out success!' });
 });
 
 
-router.get('/loggedin', (req, res, next) => {
+router.get('/loggedin', ensureLoggedIn(), (req, res, next) => {
     if (req.isAuthenticated()) {
         res.status(200).json(req.user);
         return;

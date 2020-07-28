@@ -9,11 +9,11 @@ const questionSchema = new Schema({
     skill: {
         type: String,
         enum: ['javascript', 'react', 'java', 'python', 'mongodb'],
-       // required: true
+        // required: true
     },
     description: {
-       type: String,
-       // required: true
+        type: String,
+        // required: true
     },
     code: {
         type: String
@@ -35,7 +35,10 @@ const questionSchema = new Schema({
     },
     video_id: {
         type: String,
-        default:null
+        default: null
+    },
+    match: {
+        type: [String],
     }
     //TODO añadir aqui el ide del usuario que lo haya visto o que se haya renderizado o con un boton 
 

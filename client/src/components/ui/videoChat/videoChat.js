@@ -21,7 +21,9 @@ function VideoChat(props) {
     const [caller, setCaller] = useState("")
     const [callerSignal, setCallerSignal] = useState()
     const [callAccepted, setCallAccepted] = useState(false)
+    const useForceUpdate = () => useState()[1];
     const roomID = props.match.params.video_id
+
 
 
 
@@ -98,6 +100,10 @@ function VideoChat(props) {
 
         peer.signal(callerSignal);
     }
+    const forceUpdate = useForceUpdate();
+
+    
+    
 
     let UserVideo;
     if (stream) {
@@ -117,8 +123,8 @@ function VideoChat(props) {
     if (receivingCall) {
         incomingCall = (
             <div>
-                <h1>Llamada entrante </h1>
-                <Button className="botton green ml-5" onClick={acceptCall}>Accept</Button>
+                <h3>Llamada entrante </h3>
+                <Button className="botton green" onClick={acceptCall}>Accept</Button>
             </div>
         )
     }
@@ -128,26 +134,19 @@ function VideoChat(props) {
     return (
 
         <Container>
+            
+            <Row>
+                <Col>
+                    {users && <Button className="botton green" onClick={() => callPeer(users)}> Iniciar Llamada </Button>} 
+                </Col>
+                <Col>
+                    {incomingCall}
+                </Col>
+            </Row>
             <Row>
                 <Col>
                     {UserVideo}
                     {PartnerVideo}
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    
-                    
-                    <Button className="botton green ml-5" onClick={() => callPeer(users)}>   Call llamar a gabi puto amo    </Button>
-                    
-                </Col>
-            </Row>
-
-
-
-            <Row>
-                <Col>
-                    {incomingCall}
                 </Col>
             </Row>
         </Container>

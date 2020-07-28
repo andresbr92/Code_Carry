@@ -10,23 +10,20 @@ module.exports = (io) => {
     const socketToRoom = {}
 
     io.on('connection', (socket) => {
-        // console.log('a user connected');
-
+ 
         socket.on('disconnect', () => {
-            const roomID = socketToRoom[socket.id];
-            let room = users[roomID];
+            const roomID = socketToRoom[socket.id]
+            let room = users[roomID]
             if (room) {
-                room = room.filter(id => id !== socket.id);
-                users[roomID] = room;
+                room = room.filter(id => id !== socket.id)
+                users[roomID] = room
             }
             
             
         });
 
         socket.on('room', function (data) {
-            //console.log('in joining room in SERVER')
             socket.join(data.room);
-
             socket.broadcast.to(data.room).emit('load users and code')
             socket.broadcast.to(data.room).emit('new user join', data.user)
         });
@@ -51,43 +48,16 @@ module.exports = (io) => {
             console.log(data, 'soy CLEAR CODE')
             socket.broadcast.to(data.room).emit('receive code', { code: data.code })
         })
+
         //CONFIG VIDEO
-
-
         socket.on("join room", roomID => {
             socket.emit("yourID", socket.id);
-            
-            if (users[roomID]) {
-
-
-                users[roomID].push(socket.id)
-                console.log(users, 'SOY USERS EN EL IF')
-
-            } else {
-
-                users[roomID] = [socket.id];
-                console.log (users, 'soy los users en el ELSE')
-            }
+            users[roomID] ? users[roomID].push(socket.id) : users[roomID] = [socket.id];
             socketToRoom[socket.id] = roomID;
-            console.log(socketToRoom, '<====================================')
-            console.log(users[roomID], ' SOY LOS USERS[ROOMID]' )
-             const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
-
-            console.log (users[roomID], 'SOY LOS USUARIOS ACTUALES EN LA ROOM')
-            socket.emit("allUsers", usersInThisRoom[0])
-            console.log (users)
+            const usersInThisRoom = users[roomID].filter(id => id !== socket.id);
+            socket.emit("allUsers", usersInThisRoom)
+            
         })
-
-
-
-
-
-        //io.sockets.emit("allUsers", users);
-
-
-
-
-        
 
         socket.on("callUser", (data) => {
             io.to(data.userToCall).emit('hey', { signal: data.signalData, from: data.from });

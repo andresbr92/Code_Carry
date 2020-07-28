@@ -29,12 +29,12 @@ class Room extends React.Component {
             mode: 'javascript',
             theme: 'midnight',
             users: [],
-            questionOwner:'',
+            questionOwner: '',
             currentlyTyping: null,
             showModal: false/////////////////////////
         }
 
-       
+
 
 
         socket.on('receive code', (payload) => {
@@ -66,8 +66,8 @@ class Room extends React.Component {
         const users = [...this.state.users, this.props.loggedInUser.username]
         socket.emit('room', { room: this.props.match.params.video_id, user: user });
         this.setState({ users: users })
-        
-        
+
+
 
 
         this.QuestionService
@@ -79,7 +79,7 @@ class Room extends React.Component {
             .catch(err => console.log(err))
 
     }
-    
+
 
     updateCodeQuestion = () => {
 
@@ -96,7 +96,7 @@ class Room extends React.Component {
         socket.emit('leave room', { room: this.props.match.params.video_id, user: this.props.loggedInUser.username })
     }
 
-    componentWillReceiveProps(nextProps) { //deprecado debe cambiarse
+    componentWillReceiveProps(nextProps) { //deprecado debe cambiarse componened did update
 
         const user = nextProps.loggedInUser.username //nextProps.currentUser
         const users = [...this.state.users, user]
@@ -183,17 +183,23 @@ class Room extends React.Component {
                         </div>
                     </Col>
                     <Col md={4}>
-                        <Row></Row>
-                        <div className='screen-misc'>
-                            
-                            <VideoChat loggedInUser={this.state.loggedInUser} {...this.props} usersChat={this.state.users} />
-                            <Button onClick={this.updateCodeQuestion} className="botton"> Pega aquí tu código <i className="fa fa-code" aria-hidden="true"></i></Button>
+                        <Row>
+                            <Col md={12}>
+                                <div className='screen-misc'>
+                                    <Button onClick={this.updateCodeQuestion} className="botton"> Pega aquí tu código <i className="fa fa-code" aria-hidden="true"></i></Button>
+                                    {this.state.questionOwner === this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} className="botton blue ml-5">Cerrar pregunta <br /><i className="fa fa-handshake-o" aria-hidden="true"></i></Button>}
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={12}>
+                                <VideoChat loggedInUser={this.state.loggedInUser} {...this.props} usersChat={this.state.users} />
+                            </Col>
 
-                           {this.state.questionOwner===this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} className="botton blue ml-5">Cerrar pregunta <br/><i className="fa fa-handshake-o" aria-hidden="true"></i></Button>}
-                        </div>
+                        </Row>
                     </Col>
                 </Row>
-   
+
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
                         <Rating handleQuestionSubmit={this.handleQuestionSubmit} loggedInUser={this.props.loggedInUser} handleModal={this.handleModal} users={this.state.users}  {...this.props} />

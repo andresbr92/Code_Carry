@@ -35,16 +35,6 @@ class QuestionDetails extends Component {
             .catch(err => console.log(err))
     }
 
-    removeQuestion = () => {
-
-        const id = this.props.match.params.question_id
-
-        this.QuestionService
-            .removeQuestion(id)
-            .then(() => this.props.history.goBack)
-            .catch(err => console.log(err))
-
-    }
     resolveQuestion = () => {
         const video_id = uuid()
         this.setState({ video_idState: video_id })
@@ -53,16 +43,16 @@ class QuestionDetails extends Component {
         this.componentDidMount()
 
         this.QuestionService
-            .resolveQuestionBack(question_id, {video_id:video_id})
+            .resolveQuestionBack(question_id, {
+                video_id: video_id,
+                match: [this.props.loggedInUser._id, this.state.questionDetails.userOwner]
+
+            })
             .then()
             .catch(err => console.log(err))
         
     }
    
-
-        // return (
-        //     <button onClick={create}>Create room</button>
-        // );
 
     render() {
         return (

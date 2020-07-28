@@ -12,6 +12,7 @@
     "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.22.0",
+    "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
@@ -26,8 +27,8 @@
     "node-sass-middleware": "^0.11.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "socket.io": "^1.5.1",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "socket.io": "^1.5.1"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

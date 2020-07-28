@@ -173,4 +173,15 @@ img {
   width: 300px;
   height:300px;
 }
+.trash {
+  margin-top:  28.5px;
+  width: 30px;
+
+}
+.trash:hover {
+  color: red;
+}
+button:hover {
+  text-decoration: none !important ; 
+}
 

@@ -30,7 +30,8 @@ router.post('/tryHelp/:question_id', (req, res, next) => {
     Questions
         .findByIdAndUpdate(req.params.question_id, {
             tryHelp: true,
-            video_id: req.body.video_id
+            video_id: req.body.video_id,
+            match: req.body.match
         })
         .then(response => console.log(response))
         .catch(err =>  console.log (err))
