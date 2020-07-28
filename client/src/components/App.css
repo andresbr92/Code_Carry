@@ -184,4 +184,8 @@ img {
 button:hover {
   text-decoration: none !important ; 
 }
+.cardCode {
+  width: auto;
+  height: 300px;
+}
 

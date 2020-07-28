@@ -14,7 +14,6 @@ class NewQuestion extends Component {
             skill: '',
             code:'',
             description: '',
-            image_url: '',
             userOwner: '',
             tryHelp: false,
         }
@@ -68,10 +67,6 @@ class NewQuestion extends Component {
                     <Form.Group controlId="exampleForm.ControlTextarea1">
                         <Form.Label>El codigo</Form.Label>
                         <Form.Control as="textarea" rows="3" onChange={this.handleInputChange} value={this.state.code} name="code" type="text" />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Imagen (URL)</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.image_url} name="image_url" type="text" />
                     </Form.Group>
                     <Button variant="dark" type="submit">Hacer pregunta</Button>
                 </Form>
