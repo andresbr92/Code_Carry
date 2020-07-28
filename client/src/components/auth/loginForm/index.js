@@ -14,7 +14,9 @@ class LoginForm extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            myError:false,
+            err:undefined
         }
         this.AuthService = new AuthService()
     }
@@ -32,8 +34,10 @@ class LoginForm extends Component {
                 this.props.setTheUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log(err))   // Error handling yay!
-    }
+            .catch((error) => this.setState({myError:true,err : error.response.data.message})   // Error handling yay!
+            )}
+
+    
 
     render() {
         return (
@@ -55,9 +59,11 @@ class LoginForm extends Component {
                             <Form.Group>
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                                <Form.Text className="text-muted">Mínimo tres caracteres</Form.Text>
+                                
                             </Form.Group>
-                             <button className="botton" id="start-button">
+                            {this.state.myError ?  <div className="error"><h6>{this.state.err}</h6></div> : null}
+      
+                             <button className="botton mt-3" id="start-button">
                 
                                <span>Iniciar Sesión</span>
                               </button>

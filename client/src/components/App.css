@@ -189,3 +189,16 @@ button:hover {
   height: 300px;
 }
 
+.error{
+ background-color: rgb(243, 66, 66);
+ border: solid 2px rgb(59, 4, 4);
+ text-align: center;
+ margin-bottom: 30px;
+ padding: 10px 20px;
+
+}
+
+button:hover{
+  text-decoration: none !important;
+}
+

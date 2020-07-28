@@ -51,20 +51,20 @@ class Home extends Component {
     }
 
     filterQuestion = language => {
-        //alert(language)
+       
         let result=[...this.state.questions]
         
-            result = result.filter((lang) => lang.skill === language)//lang.skill === language)
+            result = result.filter((lang) => lang.skill === language)
             console.log(result)
             this.setState({ questionsFiltered: result }) 
             
             }
     
-
     render() {
+        
         return (
             <>
-                <h1 className="titular">Bienvenido a CODE_CARRY<img className="logoBlanco ml-3"src='./../../../../images/LogoBlanco.PNG'/></h1>
+                <h1 className="titular">Bienvenido a CODE_CARRY<img className="logoBlanco ml-3" src='./../../../../images/LogoBlanco.PNG'/></h1>
                 <hr className='hr-home' />
                 <Container fluid as="main" className="">
 
@@ -75,12 +75,12 @@ class Home extends Component {
                      <Row>
                         <Col md={2}>
                         <Nav className="flex-column text-center">
-                        <Nav.Link onClick={() => this.updateQuestionsList()}>Todos los lenguajes</Nav.Link><hr className="hr-home" />
+                            <Nav.Link onClick={() => this.updateQuestionsList()}>Todos los lenguajes</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("javascript")}>JavaScript</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("java")}>Java</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("react")}>React</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("mongodb")}>MongoDB</Nav.Link><hr className="hr-home" />
-                            <Nav.Link onClick={() => this.filterQuestion("python")}>Python</Nav.Link>
+                            <Nav.Link onClick={() => this.filterQuestion("python")} >Python</Nav.Link>
                         </Nav>
                         </Col>
                         <Col  md={10}>

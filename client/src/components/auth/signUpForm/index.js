@@ -14,7 +14,9 @@ class SignupForm extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            myError:false,
+            err:undefined
         }
         this.AuthService = new AuthService()
     }
@@ -24,6 +26,7 @@ class SignupForm extends Component {
         const { name, value } = e.target
         this.setState({ [name]: value })
     }
+    
 
     handleFormSubmit = e => {
         e.preventDefault()
@@ -33,8 +36,8 @@ class SignupForm extends Component {
                 this.props.setTheUser(response.data)
                 this.props.history.push('/home')
             })
-            .catch(err => console.log(err.response.data.message))   // Error handling yay!
-    }
+            .catch((error) => this.setState({myError:true,err : error.response.data.message})   // Error handling yay!
+                )}
 
     render() {
         return (
@@ -58,6 +61,8 @@ class SignupForm extends Component {
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
                                 <Form.Text className="text-muted">Mínimo tres caracteres</Form.Text>
                             </Form.Group>
+
+                            {this.state.myError ?  <div className="error"><h6>{this.state.err}</h6></div> : null}
 
                             <button className="botton" id="start-button"> <span>Regístrate</span></button>
                         </Form>

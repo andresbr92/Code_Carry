@@ -6,6 +6,12 @@ const Question = require('../../models/question.model')
 const { find } = require('../../models/user.model')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 
+///////////////////////
+const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : {message: "Inicia sesión"}
+const isProfileOwner = (req, res, next) => req.params.user_id === req.users._id ? true : false
+const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : null
+//////////////////////
+
 // Endpoints
 
 router.get('/:user_id', ensureLoggedIn(),  (req, res, next) => {
