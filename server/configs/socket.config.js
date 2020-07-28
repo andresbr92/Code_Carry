@@ -38,7 +38,7 @@ module.exports = (io) => {
             queueEvent.push(data)
             const lastOne = queueEvent.shift(queueEvent.length)
 
-            socket.broadcast.to(data.room).emit('receive code', { code: lastOne.code });
+            socket.broadcast.to(data.room).emit('receive code', { code: lastOne.code, currentlyTyping: data.currentlyTyping  });
         })
 
         socket.on('send users and code', function (data) {

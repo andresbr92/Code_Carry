@@ -14,7 +14,7 @@ import LoginForm from './../components/auth/loginForm'
 import SignupForm from './../components/auth/signUpForm'
 import QuestionDetails from './question/questionDetails';
 import ChatPrueba from './ui/codeMirror/codeMirror';
-import Home from './ui/home'
+import Home from './../components/home'
 import FooterPagePro from './ui/footer'
 
 

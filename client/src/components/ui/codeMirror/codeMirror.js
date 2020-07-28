@@ -121,10 +121,14 @@ class Room extends React.Component {
         this.setState({ users: cleanUsers })
 
     }
+    updateCurrentlyTyping() {
+        this.setState({ currentlyTyping: this.props.loggedInUser.username })
+    }
     updateCodeInState(payload) { // whenever there is a change to the code miroors text area, copy of Room's state, causing our component to re-render, passing that new value of this.state.code into the Codemirror component under the prop of value.
 
         this.setState({
-            code: payload.code
+            code: payload.code,
+            currentlyTyping: payload.currentlyTyping
         });
     }
 
@@ -137,13 +141,15 @@ class Room extends React.Component {
         this.setState({ users: cleanUsers, code: payload.code })
     }
     codeIsHappening(newCode) {
+        this.updateCurrentlyTyping()
 
 
-        socket.emit('coding event', { code: newCode, room: this.props.match.params.video_id, user: this.props.loggedInUser.username })
+        socket.emit('coding event', { code: newCode, room: this.props.match.params.video_id, user: this.props.loggedInUser.username, currentlyTyping: this.props.loggedInUser.username })
     }
     clearCode = () => {
         socket.emit('clear code', { code: '', room: this.props.match.params.video_id })
     }
+    
 
 
     handleModal = status => this.setState({ showModal: status })///////////////////
@@ -180,9 +186,11 @@ class Room extends React.Component {
                                 }
                             />
                             <Button onClick={this.clearCode.bind(this)} className="col-lg-12"><i className="fa fa-recycle" aria-hidden="true"></i> Limpiar código</Button>
+                            
                         </div>
                     </Col>
                     <Col md={4}>
+                        <div>{this.state.currentlyTyping} esta escribiendo...</div>
                         <Row>
                             <Col md={12}>
                                 <div className='screen-misc'>

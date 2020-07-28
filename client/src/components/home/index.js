@@ -1,15 +1,15 @@
 
 import React, { Component } from 'react'
-import QuestionService from '../../../service/questionService';
+import QuestionService from './../../service/questionService';
 import CuestionCard from './questionCard'
 import Nav from 'react-bootstrap/Nav'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
-import NewQuestion from '../../question/formQuestions';
+import NewQuestion from './../question/formQuestions';
 import Button from 'react-bootstrap/Button'
-import Spinner from './../spinner'
+import Spinner from './../ui/spinner'
 
 class Home extends Component {
     constructor(props) {
