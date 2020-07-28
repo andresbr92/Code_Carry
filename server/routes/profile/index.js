@@ -5,9 +5,15 @@ const User = require('../../models/user.model')
 const Question = require('../../models/question.model')
 const { find } = require('../../models/user.model')
 
+///////////////////////
+const isLoggedIn = (req, res, next) => req.isAuthenticated() ? next() : {message: "Inicia sesión"}
+const isProfileOwner = (req, res, next) => req.params.user_id === req.users._id ? true : false
+const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : null
+//////////////////////
+
 // Endpoints
 
-router.get('/:user_id', (req, res, next) => {
+router.get('/:user_id',isLoggedIn, (req, res, next) => {
     
     const promise1 = User.findById(req.params.user_id)
     const promise2 = Question.find({ "userOwner": req.params.user_id })
@@ -20,7 +26,7 @@ router.get('/:user_id', (req, res, next) => {
     
 })
 
-router.get('/edit/:user_id', (req, res, next) => {
+router.get('/edit/:user_id',isProfileOwner ,(req, res, next) => {
     User.findById(req.params.user_id)
     .then(user => res.send(user))
     .catch(err => next(err))

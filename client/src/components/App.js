@@ -33,7 +33,6 @@ class App extends Component {
     
     }
 
-
     this.AuthService = new AuthService()
 
   }
@@ -49,7 +48,20 @@ class App extends Component {
       .then(response => this.state.loggedInUser === null && this.setState({ loggedInUser: response.data }))
       .catch(err => console.log({ err }))
   }
+
+  fetchUser = () => {
+
+    this.AuthService
+    .isLoggedIn()
+    .then(response => this.state.loggedInUser === null && this.setState({loggedInUser : response.data}))
+    .catch(err => console.log(err))
+
+  }
+
   render() {
+
+    this.fetchUser()
+
     return (
       <>
 
