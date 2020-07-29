@@ -4,7 +4,7 @@ const User = require('../models/user.model')
 const Question = require('../models/question.model')
 const dbTitle = 'codecarry'
 
-mongoose.connect(`mongodb://localhost/${dbTitle}`, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(process.env.DB_REMOTE, { useUnifiedTopology: true, useNewUrlParser: true })
 
 
 
