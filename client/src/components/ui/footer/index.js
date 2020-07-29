@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-
+import LogoBlanco from './../../home/images/LogoBlanco.PNG'
 
 
 const FooterPagePro = () => {
@@ -24,7 +24,7 @@ const FooterPagePro = () => {
                 <i className="fa fa-twitter" aria-hidden="true"/>
               </Link>
               <Link>
-              <i class="fa fa-linkedin" aria-hidden="true"/>
+              <i className="fa fa-linkedin" aria-hidden="true"/>
                 </Link>
                 <Link>
                 <i className="fa fa-instagram" aria-hidden="true"/>
@@ -101,13 +101,13 @@ const FooterPagePro = () => {
             </p>
             </MDBCol>
             <MDBCol md="2" lg="2" xl="2" className="mt-5  ">
-              <img src="./../../../../images/LogoBlanco.PNG" className="logo-footer" />
+              <img src={LogoBlanco} className="logo-footer" />
             
 
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <div class="text-center py-3 text-white">
+      <div className="text-center py-3 text-white">
         <MDBContainer fluid>
          Design by Barros & Moreno 
         </MDBContainer>

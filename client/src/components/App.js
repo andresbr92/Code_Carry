@@ -16,9 +16,9 @@ import QuestionDetails from './question/questionDetails';
 import ChatPrueba from './ui/codeMirror/codeMirror';
 import Home from './../components/home'
 import FooterPagePro from './ui/footer'
+import Message from './ui/CustomToast'
 
 
-//TODO como hacer que la pregunta se vuelva privada solo para esaas dos personas
 class App extends Component {
   constructor(props) {
     super(props)
@@ -26,8 +26,7 @@ class App extends Component {
       loggedInUser: null,
       toast: {
         visible: false,
-        text: '',
-
+        text: ''
       },
       filteredSearch: '',
     
@@ -58,27 +57,35 @@ class App extends Component {
 
   }
 
+  handleToast = (visible, text = '') => {
+    let toastCopy = { ...this.state.toast }
+    toastCopy = { visible, text }
+    this.setState({ toast: toastCopy })
+
+  }
+
+
   render() {
 
     this.fetchUser()
 
     return (
       <>
-
-        <Navigation handleSearch={this.handleSearch} setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
+                                                                                                                          {/* /////////////////////////////////////////// */}
+        <Navigation handleSearch={this.handleSearch} setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} fetchUser={this.fetchUser}/>
 
         <Switch>
 
           {/* AUTH */}
-          <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} />} />
-          <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
+          <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
+          <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
 
           {/* PROFILE */}
           <Route exact path='/profile/edit/:user_id' render={props =>
             this.state.loggedInUser ? <EditForm loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to='/auth/login' />} />
 
           <Route exact path="/profile/:user_id" render={props =>
-            this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
+            this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/> : <Redirect to='/auth/login' />} />
 
           <Route exact path='/question/new/:user_id' render={props =>
             this.state.loggedInUser ? <NewQuestion {...props} loggedInUser={this.state.loggedInUser} /> : <Redirect to='/auth/login' />} />
@@ -91,6 +98,9 @@ class App extends Component {
           <Route exact path='/chat/:video_id' render={props => <ChatPrueba loggedInUser={this.state.loggedInUser} {...props} />} />
       
         </Switch>
+        {/* /////////////////////// */}
+        <Message {...this.state.toast} handleToast={this.handleToast} />
+
         <FooterPagePro setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
       </>
     )

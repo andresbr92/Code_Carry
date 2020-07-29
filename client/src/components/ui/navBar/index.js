@@ -6,7 +6,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import AuthService from './../../../service/authService'
 import { Link, NavLink } from 'react-router-dom'
-
+import Logo from './images/Logo.PNG'
 
 class Navigation extends Component {
     constructor(props) {
@@ -40,7 +40,7 @@ class Navigation extends Component {
             <>
                 <Navbar  className= 'navigation' variant="dark" expand="lg" sticky="top" >
                     <Navbar.Brand>
-                    <img src="./../../../../images/Logo.PNG" className="logo mb-1 mr-3"></img>
+                    <img src={Logo} className="logo mb-1 mr-3"></img>
                         <Link to="/">Code_Carry</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

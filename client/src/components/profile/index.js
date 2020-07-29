@@ -10,6 +10,8 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import QuestionDetails from './../../components/question/questionDetails'
+import Message from './../../components/ui/CustomToast'
+
 
 class Profile extends Component {
     constructor(props) {
@@ -17,7 +19,11 @@ class Profile extends Component {
         this.state = {
             //TODO refactorizar user (trae el user, preguntas del user, y todas las preguntas)
             user: undefined,
-            notViewedNotification: undefined
+            notViewedNotification: undefined,
+            toast: {
+                visible: false,
+                text: ''
+              },
         }
         this.ProfileService = new ProfileService()
         this.QuestionService = new QuestionService()
@@ -47,10 +53,11 @@ class Profile extends Component {
 
         this.QuestionService
             .removeQuestion(question_id)
-            .then()/////////////////////////////////////
+            .then()
             .catch(err => console.log(err))
 
-        this.updateUser(this.state.user[0]._id)
+            this.updateUser(this.state.user[0]._id)
+            this.props.handleToast(true, 'Pregunta borrada')
 
     }
 
@@ -72,17 +79,12 @@ class Profile extends Component {
     }
 
 
-
-
     render() {
 
         return (
 
             !this.state.user ? <Spinner /> :
-
-                <>
-
-
+                    
                     <Container as="main" className="mt-5 mb-5 text-center">
 
                         <h1 className="text-white">Bienvenido a tu perfil {this.state.user[0].username}</h1>
@@ -182,8 +184,9 @@ class Profile extends Component {
                                 </Col>)
                                 : null}
                         </Row>
+                        <Message {...this.state.toast} handleToast={this.handleToast}/>
                     </Container>
-                </>
+        
         )
     }
 }

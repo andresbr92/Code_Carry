@@ -10,6 +10,8 @@ import Modal from 'react-bootstrap/Modal'
 import NewQuestion from './../question/formQuestions';
 import Button from 'react-bootstrap/Button'
 import Spinner from './../ui/spinner'
+import LogoBlanco from './images/LogoBlanco.PNG'
+
 
 class Home extends Component {
     constructor(props) {
@@ -25,7 +27,6 @@ class Home extends Component {
 
         this.QuestionService = new QuestionService()
     }
-
 
     componentDidMount = () => this.updateQuestionsList()
 
@@ -64,15 +65,15 @@ class Home extends Component {
         
         return (
             <>
-                <h1 className="titular">Bienvenido a CODE_CARRY<img className="logoBlanco ml-3" src='./../../../../images/LogoBlanco.PNG'/></h1>
-                <hr className='hr-home' />
+                <h1 className="titular">Bienvenido a CODE_CARRY<img className="logoBlanco ml-3" src={LogoBlanco}/></h1>
+                <hr className='hr-principal' />
                 <Container fluid as="main" className="mr-4">
                     {!this.state.questions ? <Spinner /> :
 
                      <Row>
                         <Col md={2}>
                         {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }} className="botton blue ml-4 mb-5">Hacer pregunta <i className="fa fa-commenting-o ml-2" aria-hidden="true"></i></Button>}
-                        <Nav className="flex-column text-center">
+                        <Nav className="flex-column text-center mt-5">
                             <Nav.Link onClick={() => this.updateQuestionsList()}>Todos los lenguajes</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("javascript")}>JavaScript</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("java")}>Java</Nav.Link><hr className="hr-home" />
