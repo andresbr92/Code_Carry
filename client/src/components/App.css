@@ -58,7 +58,6 @@ img {
 }
 
 .hr-home {
-  margin-bottom: 50px;
   background-color: rgb(255, 255, 255);
   width: 35%;
 }
@@ -198,7 +197,13 @@ button:hover {
 
 }
 
-button:hover{
-  text-decoration: none !important;
+.botton-call{
+  margin-bottom: 50px;
+}
+
+.text-home{
+  margin-right: 15%;
+  margin-bottom:8% ;
+  font-family: 'Montserrat', sans-serif;
 }
 

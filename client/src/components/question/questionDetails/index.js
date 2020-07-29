@@ -73,8 +73,12 @@ class QuestionDetails extends Component {
                             
 
                         </Col>
-                        <Col md={{ span: 4, offset: 1 }}>
-                            <img src={this.state.questionDetails.image_url} alt={this.state.questionDetails.title} />
+                        <Col md={{ span: 4, offset: 1 }} className="mb-5">
+                        {this.state.questionDetails.skill === 'javascript' && <img src='./../../../../images/js-logo.png' alt={this.state.questionDetails.title} />}
+                        {this.state.questionDetails.skill === 'java' && <img src='./../../../../images/java.png' alt={this.state.questionDetails.title} />}
+                        {this.state.questionDetails.skill === 'react' && <img src='./../../../../images/react.jpg' alt={this.state.questionDetails.title} />}
+                        {this.state.questionDetails.skill === 'mongodb' && <img src='./../../../../images/mongoDB.jpg' alt={this.state.questionDetails.title} />}
+                        {this.state.questionDetails.skill === 'python' && <img src='./../../../../images/python.jpg' alt={this.state.questionDetails.title} />}  
                         </Col>
                     </Row>
                     <Row>

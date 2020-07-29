@@ -66,14 +66,12 @@ class Home extends Component {
             <>
                 <h1 className="titular">Bienvenido a CODE_CARRY<img className="logoBlanco ml-3" src='./../../../../images/LogoBlanco.PNG'/></h1>
                 <hr className='hr-home' />
-                <Container fluid as="main" className="">
-
-                {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }} className="botton blue mb-5 ml-4">Hacer pregunta <i className="fa fa-commenting-o ml-2" aria-hidden="true"></i></Button>}
-
+                <Container fluid as="main" className="mr-4">
                     {!this.state.questions ? <Spinner /> :
 
                      <Row>
                         <Col md={2}>
+                        {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }} className="botton blue ml-4 mb-5">Hacer pregunta <i className="fa fa-commenting-o ml-2" aria-hidden="true"></i></Button>}
                         <Nav className="flex-column text-center">
                             <Nav.Link onClick={() => this.updateQuestionsList()}>Todos los lenguajes</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("javascript")}>JavaScript</Nav.Link><hr className="hr-home" />
@@ -83,13 +81,14 @@ class Home extends Component {
                             <Nav.Link onClick={() => this.filterQuestion("python")} >Python</Nav.Link>
                         </Nav>
                         </Col>
-                        <Col  md={10}>
-                      <Row>
-                      
-                        {this.state.questionsFiltered.filter((elm) => elm.title.toLowerCase().includes(this.props.handleSearch)).map((elm, idx) => <CuestionCard {...elm} key={idx} handleChange={() => this.handleInputChange(idx)} />)}
-                      </Row>
+
+                        <Col  md={9}>
+                        <h3 className="text-center text-home">La programación es tu vida</h3>
+                           <Row>
+                              {this.state.questionsFiltered.filter((elm) => elm.title.toLowerCase().includes(this.props.handleSearch)).map((elm, idx) => <CuestionCard {...elm} key={idx} handleChange={() => this.handleInputChange(idx)} />)}
+                           </Row>
                         </Col>  
-                     </Row>
+                    </Row>
                     }
                 </Container>
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
