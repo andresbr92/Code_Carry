@@ -16,7 +16,7 @@ import Rating from './../../profile/rating-form'
 
 
 const io = require('socket.io-client')
-var socket = io.connect('http://localhost:5000');
+var socket = io.connect('https://codecarry.herokuapp.com');
 socket.on('news', function (data) {
 
 });
