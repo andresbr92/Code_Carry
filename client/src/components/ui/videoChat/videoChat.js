@@ -9,8 +9,8 @@ import Col from 'react-bootstrap/Col'
 import { Button } from 'react-bootstrap'
 
 const Video = styled.video`
-  width: 50%;
-  height: 50%;
+  width: 95%;
+  height: 95%;
 `;
 
 function VideoChat(props) {
@@ -122,9 +122,9 @@ function VideoChat(props) {
     let incomingCall;
     if (receivingCall) {
         incomingCall = (
-            <div>
-                <h3>Llamada entrante </h3>
-                <Button className="botton green" onClick={acceptCall}>Accept</Button>
+            <div className="text-center">
+                <h3 className="text-white">Llamada entrante</h3>
+                <Button className="botton botton-call mt-1" onClick={acceptCall}>Accept</Button>
             </div>
         )
     }
@@ -136,18 +136,23 @@ function VideoChat(props) {
         <Container>
             
             <Row>
-                <Col>
-                    {users && <Button className="botton green" onClick={() => callPeer(users)}> Iniciar Llamada </Button>} 
-                </Col>
-                <Col>
+               
+                <Col md={12}>
                     {incomingCall}
                 </Col>
-            </Row>
-            <Row>
-                <Col>
+           
+                <Col md={6}>
                     {UserVideo}
+                </Col>
+
+                <Col md={6}>
                     {PartnerVideo}
                 </Col>
+
+                <Col>
+                    {users && <Button className="botton mt-5" onClick={() => callPeer(users)}> Iniciar Llamada </Button>} 
+                </Col>
+
             </Row>
         </Container>
     );

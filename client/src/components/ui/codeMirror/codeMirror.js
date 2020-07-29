@@ -190,10 +190,10 @@ class Room extends React.Component {
                         </div>
                     </Col>
                     <Col md={4}>
-                        <div>{this.state.currentlyTyping} esta escribiendo...</div>
+                        <div className="text-white mt-4">{this.state.currentlyTyping} Está escribiendo...</div>
                         <Row>
                             <Col md={12}>
-                                <div className='screen-misc'>
+                                <div className='screen-misc botton-call'>
                                     <Button onClick={this.updateCodeQuestion} className="botton"> Pega aquí tu código <i className="fa fa-code" aria-hidden="true"></i></Button>
                                     {this.state.questionOwner === this.props.loggedInUser._id && <Button onClick={() => this.handleModal(true)} className="botton blue ml-5">Cerrar pregunta <br /><i className="fa fa-handshake-o" aria-hidden="true"></i></Button>}
                                 </div>
@@ -201,7 +201,7 @@ class Room extends React.Component {
                         </Row>
                         <Row>
                             <Col md={12}>
-                                <VideoChat loggedInUser={this.state.loggedInUser} {...this.props} usersChat={this.state.users} />
+                                <VideoChat className="mb-5" loggedInUser={this.state.loggedInUser} {...this.props} usersChat={this.state.users} />
                             </Col>
 
                         </Row>
