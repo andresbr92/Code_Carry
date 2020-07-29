@@ -33,7 +33,7 @@ function VideoChat(props) {
     const socket = useRef()
 
     useEffect(() => {
-        socket.current = io.connect("http://localhost:5000")
+        socket.current = io.connect('https://codecarry.herokuapp.com')
         socket.current.emit("join room", roomID);
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
             setStream(stream);
