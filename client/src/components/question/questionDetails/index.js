@@ -93,7 +93,7 @@ class QuestionDetails extends Component {
 
                     <Button onClick={this.props.history.goBack} className="botton">Volver</Button>
                     {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
-                    {this.props.loggedInUser._id != this.state.questionDetails.userOwner ? <Button className="botton ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button> : null}
+                    {this.props.loggedInUser && this.props.loggedInUser._id != this.state.questionDetails.userOwner ? <Button className="botton ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button> : null}
                     
                     {this.state.questionDetails.tryHelp && <Link className="botton red-chat ml-5 " to={`/chat/${this.state.questionDetails.video_id}`}><span className="p-4">IR AL CHAT</span></Link>}
 
