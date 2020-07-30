@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FormCheck from 'react-bootstrap/FormCheck'
 import Container from 'react-bootstrap/esm/Container'
+import Logo from './image/Logo.PNG'
 
 class NewQuestion extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class NewQuestion extends Component {
     render() {
         return (
             <Container>
-             <img src="./../../../images/Logo.PNG" className="img-form" />
+             <img src={Logo} className="img-form" />
                 <h4 className="text-center">Haz tu pregunta</h4>
                 <hr />
                 <Form onSubmit={this.handleFormSubmit}>

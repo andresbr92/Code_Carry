@@ -72,8 +72,8 @@ class QuestionDetails extends Component {
                     <Row>
                         <Col md={{ span: 5, offset: 1 }}>
                             <p><b>Pregunta: </b> {this.state.questionDetails.description} </p>
-                            <hr className="hr-home" />
-                            <h5>Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
+                            <hr className="hr-home ml-5" />
+                            <h5 className="mb-5 mt-5">Lenguaje de programacion:  {this.state.questionDetails.skill} </h5>
                             
 
                         </Col>
@@ -95,7 +95,7 @@ class QuestionDetails extends Component {
                     {/* TODO hay que redirigir al chat con el usuario propietario de la pregunta */}
                     {this.props.loggedInUser._id != this.state.questionDetails.userOwner ? <Button className="botton ml-5" onClick={this.resolveQuestion}>Resolver pregunta</Button> : null}
                     
-                    {this.state.questionDetails.tryHelp && <Link className="botton red-chat ml-5" to={`/chat/${this.state.questionDetails.video_id}`}><span>IR AL CHAT</span></Link>}
+                    {this.state.questionDetails.tryHelp && <Link className="botton red-chat ml-5 " to={`/chat/${this.state.questionDetails.video_id}`}><span className="p-4">IR AL CHAT</span></Link>}
 
                 </Container>
 

@@ -105,7 +105,6 @@ class EditForm extends Component {
     }
 
     render() {
-        
 
         return (
             this.state.editing ? <Spinner /> :

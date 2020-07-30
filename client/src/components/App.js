@@ -71,18 +71,18 @@ class App extends Component {
 
     return (
       <>
-                                                                                                                          {/* /////////////////////////////////////////// */}
+                                                                                                            
         <Navigation handleSearch={this.handleSearch} setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} fetchUser={this.fetchUser}/>
 
         <Switch>
 
           {/* AUTH */}
-          <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
-          <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
+          <Route exact path="/auth/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} />} />
+          <Route exact path="/auth/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
 
           {/* PROFILE */}
           <Route exact path='/profile/edit/:user_id' render={props =>
-            this.state.loggedInUser ? <EditForm loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to='/auth/login' />} />
+            this.state.loggedInUser ? <EditForm loggedInUser={this.state.loggedInUser} fetchUser={this.fetchUser} {...props} /> : <Redirect to='/auth/login' />} />
 
           <Route exact path="/profile/:user_id" render={props =>
             this.state.loggedInUser ? <Profile {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/> : <Redirect to='/auth/login' />} />

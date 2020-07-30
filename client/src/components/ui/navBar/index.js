@@ -36,9 +36,12 @@ class Navigation extends Component {
             .catch(err => console.log(err))
     }
     render() {
+
+        this.props.fetchUser()
+
         return (
-            <>
-                <Navbar  className= 'navigation' variant="dark" expand="lg" sticky="top" >
+            
+                <Navbar  className='navigation' variant="dark" expand="lg" sticky="top" >
                     <Navbar.Brand>
                     <img src={Logo} className="logo mb-1 mr-3"></img>
                         <Link to="/">Code_Carry</Link>
@@ -81,7 +84,7 @@ class Navigation extends Component {
                     </Navbar.Collapse>
                 </Navbar>
 
-            </>
+          
         )
     }
 }

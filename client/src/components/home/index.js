@@ -72,8 +72,8 @@ class Home extends Component {
 
                      <Row>
                         <Col md={2}>
+                        <Nav className="flex-column text-center mt-5 nav-lateral">
                         {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} variant="dark" size="sm" style={{ marginBottom: '20px' }} className="botton blue ml-4 mb-5">Hacer pregunta <i className="fa fa-commenting-o ml-2" aria-hidden="true"></i></Button>}
-                        <Nav className="flex-column text-center mt-5">
                             <Nav.Link onClick={() => this.updateQuestionsList()}>Todos los lenguajes</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("javascript")}>JavaScript</Nav.Link><hr className="hr-home" />
                             <Nav.Link onClick={() => this.filterQuestion("java")}>Java</Nav.Link><hr className="hr-home" />
@@ -84,7 +84,7 @@ class Home extends Component {
                         </Col>
 
                         <Col  md={9}>
-                        <h3 className="text-center text-home">La programación es tu vida</h3>
+                        <h3 className="text-center text-home">“Los programadores hicimos un trato con Dios, el no hace sistemas y nosotros no hacemos milagros”</h3>
                            <Row>
                               {this.state.questionsFiltered.filter((elm) => elm.title.toLowerCase().includes(this.props.handleSearch)).map((elm, idx) => <CuestionCard {...elm} key={idx} handleChange={() => this.handleInputChange(idx)} />)}
                            </Row>

@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import FormCheck from 'react-bootstrap/FormCheck'
 import Container from 'react-bootstrap/esm/Container'
+import Logo from './images/Logo.PNG'
 
 class Rating extends Component {
     constructor(props) {
@@ -49,7 +50,7 @@ class Rating extends Component {
         return (
 
             <Container>
-            <img src="./../../../images/Logo.PNG" className="img-form mb-3" />
+            <img src={Logo} className="img-form mb-3" />
                 <h4>Puntúa la respuesta recibida de { this.props.users[0] === this.props.loggedInUser.username ? this.props.users[1] : this.props.users[0]}</h4>
                 <hr />
                 <Form onSubmit={this.handleFormSubmit}>

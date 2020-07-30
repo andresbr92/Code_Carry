@@ -50,20 +50,20 @@ const FooterPagePro = () => {
           </MDBCol>
           <MDBCol md="2" lg="2" xl="2" className="mb-4">
             <h6 className="text-uppercase font-weight-bold text-white">
-              <strong>Productos</strong>
+              <strong>Servicios</strong>
             </h6>
             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px",backgroundColor:"white" }} />
             <p>
-              <Link to="/auth/login">MDBootstrap</Link>
+              <Link to="/auth/login">Privacidad</Link>
             </p>
             <p>
-            <Link to="/auth/login">MDBootstrap</Link>
+            <Link to="/auth/login">Seguridad</Link>
             </p>
             <p>
-            <Link to="/auth/login">MDBootstrap</Link>
+            <Link to="/auth/login">Ayuda</Link>
             </p>
             <p>
-            <Link to="/auth/login">MDBootstrap</Link>
+            <Link to="/auth/login">Software</Link>
             </p>
           </MDBCol>
           <MDBCol md="2" lg="2" xl="2" className="mb-4">
@@ -72,13 +72,16 @@ const FooterPagePro = () => {
             </h6>
             <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{ width: "60px" ,backgroundColor:"white"}} />
             <p>
-            <Link to="/auth/login">Tu cuenta</Link>
+            <Link to="/auth/login">Empresa</Link>
             </p>
             <p>
-            <Link to="/auth/signup">Registrate</Link>
+            <Link to="/auth/signup">Equipo</Link>
             </p>
             <p>
-            <Link to="/auth/login">MDBootstrap</Link>
+            <Link to="/auth/login">Desarrolladores</Link>
+            </p>
+            <p>
+            <Link to="/auth/login">Instalaciones</Link>
             </p>
           </MDBCol>
 
@@ -91,7 +94,7 @@ const FooterPagePro = () => {
               <i className="fa fa-home mr-3" /> Madrid, MD 28043, ES
             </p>
             <p>
-              <i className="fa fa-envelope mr-3" /> info@example.com
+              <i className="fa fa-envelope mr-3" /> info@code_carry.com
             </p>
             <p>
               <i className="fa fa-phone mr-3" /> + 01 234 567 88

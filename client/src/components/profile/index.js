@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProfileService from './../../service/profileService'
-import QuestionService from '../../service/questionService';////////////////////////////
+import QuestionService from '../../service/questionService';
 import Spinner from './../ui/spinner'
 import { Link } from 'react-router-dom'
 import Col from 'react-bootstrap/Col'
